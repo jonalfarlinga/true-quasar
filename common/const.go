@@ -3,9 +3,10 @@ package common
 import "image/color"
 
 const (
-	StateMenu = iota
+	StateMenu uint8 = iota
 	StateDraft
 	StateCombat
+	StateCreate
 )
 
 const (
@@ -14,17 +15,19 @@ const (
 )
 
 const (
-	Power = iota
+	Power uint8 = iota
 	Accuracy
 	Will
 )
 
 var (
-	BackgroundColor = color.RGBA{R: 0x10, G: 0x10, B: 0x10, A: 0xff}
+	BackgroundColor = color.Gray16{0x111F}
+	MenuButtonColor = color.Gray16{0x555F}
+	MenuButtonHoverColor = color.Gray16{0x7FFF}
 )
 
 const (
-	Nexus = iota
+	Nexus uint8 = iota
 	Antimatter
 	Graviton
 	Plasma

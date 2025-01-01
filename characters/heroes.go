@@ -1,10 +1,10 @@
 package characters
 
 import (
+	"math/rand"
 	"quasar/assets"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
-	"quasar/common"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -12,7 +12,7 @@ import (
 type Hero struct {
 	Name        string
 	Description string
-	Type        int
+	Type        uint8
 	Stats       *stats.Statistics
 	ActionList  []*actions.Action
 	Cooldowns   []int
@@ -47,7 +47,7 @@ func NewHero(name string, statistics *stats.Statistics, actionList []*actions.Ac
 	return &Hero{
 		Name:        name,
 		Stats:       statistics,
-		Type:        common.RandInt(0, 6),
+		Type:        uint8(rand.Intn(7)),
 		Description: "A hero",
 		ActionList:  actionList,
 		Cooldowns:   make([]int, len(actionList)),

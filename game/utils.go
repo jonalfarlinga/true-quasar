@@ -1,6 +1,6 @@
 package game
 
-import "quasar/common"
+import "math/rand"
 
 // result of rolling n action dice
 // 0 - power
@@ -12,7 +12,7 @@ func rollActionDice(n int) map[int]int {
 	choices[1] = 0
 	choices[2] = 0
 	for i := 0; i < n; i++ {
-		choices[common.RandInt(1, 3)]++
+		choices[rand.Intn(3)]++
 	}
 	return choices
 }
