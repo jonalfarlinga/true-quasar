@@ -10,3 +10,9 @@ const (
 	ScreenWidth = 1280
 	ScreenHeight = 768
 )
+
+const (
+	Power = iota
+	Accuracy
+	Will
+)
