@@ -2,12 +2,13 @@ package game
 
 import (
 	"quasar/characters"
+	"quasar/consts"
+	"quasar/state"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type Game struct {
-	State	  uint8
 	Team      []Team
 	TurnOrder []*characters.Hero
 }
@@ -23,12 +24,12 @@ type Team struct {
 }
 
 func (g *Game) Update() error {
-	switch g.State {
-	case StateMenu:
+	switch state.GameState {
+	case consts.StateMenu:
 		// Menu logic goes here
-	case StateDraft:
+	case consts.StateDraft:
 		// Draft logic goes here
-	case StateCombat:
+	case consts.StateCombat:
 		// Combat logic goes here
 	}
 
@@ -37,12 +38,12 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	switch g.State {
-	case StateMenu:
+	switch state.GameState {
+	case consts.StateMenu:
 		// Draw menu screen
-	case StateDraft:
+	case consts.StateDraft:
 		// Draw draft screen
-	case StateCombat:
+	case consts.StateCombat:
 		// Draw combat screen
 	}
 }
