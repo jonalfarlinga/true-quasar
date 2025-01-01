@@ -2,8 +2,7 @@ package main
 
 import (
 	"quasar/game"
-	"quasar/state"
-	"quasar/consts"
+	"quasar/common"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -11,9 +10,9 @@ import (
 func main() {
 	// Create a new game instance
 	g := &game.Game{}
-	state.GameState = state.StateMenu
+	common.GameState = common.StateMenu
 
-	ebiten.SetWindowSize(consts.ScreenWidth, consts.ScreenHeight)
+	ebiten.SetWindowSize(common.ScreenWidth, common.ScreenHeight)
 	ebiten.SetFullscreen(true)
 
 	// Run the game

@@ -4,12 +4,15 @@ import (
 	"quasar/assets"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
+	"quasar/common"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type Hero struct {
 	Name        string
+	Description string
+	Type        int
 	Stats       *stats.Statistics
 	ActionList  []*actions.Action
 	Cooldowns   []int
@@ -40,9 +43,12 @@ func NewHero(name string, statistics *stats.Statistics, actionList []*actions.Ac
 	if len(actionList) == 0 {
 		actionList = actions.ActionsDefault()
 	}
+
 	return &Hero{
 		Name:        name,
 		Stats:       statistics,
+		Type:        common.RandInt(0, 6),
+		Description: "A hero",
 		ActionList:  actionList,
 		Cooldowns:   make([]int, len(actionList)),
 		HeroImage:   assets.MustLoadImage("assets/images/vanguard_hero.png"),

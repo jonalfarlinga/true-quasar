@@ -1,4 +1,4 @@
-package consts
+package common
 
 import "image/color"
 
@@ -20,5 +20,14 @@ const (
 )
 
 var (
-	backgroundColor = color.RGBA{R: 0x10, G: 0x10, B: 0x10, A: 0xff}
+	BackgroundColor = color.RGBA{R: 0x10, G: 0x10, B: 0x10, A: 0xff}
+)
+
+const (
+	Nexus = iota
+	Antimatter
+	Graviton
+	Plasma
+	Metal
+	Void
 )
