@@ -1,6 +1,10 @@
 package common
 
-import "image/color"
+import (
+	"image/color"
+
+	"golang.org/x/image/font/basicfont"
+)
 
 const (
 	StateMenu uint8 = iota
@@ -21,11 +25,12 @@ const (
 )
 
 var (
-	BackgroundColor = color.RGBA{0x10, 0x10, 0x10, 0xff}
-	MenuButtonColor = color.RGBA{0x50, 0x50, 0x50, 0xff}
-	MenuButtonHoverColor = color.RGBA{0x70, 0x70, 0x70, 0xff}
-	GoldColor = color.RGBA{0xff, 0xd7, 0x00, 0xff}
-	RedColor = color.RGBA{0xDD, 0x20, 0x15, 0xff}
+	BackgroundColor  = color.RGBA{0x10, 0x10, 0x10, 0xff}
+	ButtonColor      = color.RGBA{0x50, 0x50, 0x00, 0xff}
+	ButtonHoverColor = color.RGBA{0x70, 0x70, 0x30, 0xff}
+	ButtonOffColor   = color.RGBA{0x30, 0x30, 0x30, 0xff}
+	GoldColor        = color.RGBA{0xff, 0xd7, 0x00, 0xff}
+	RedColor         = color.RGBA{0xDD, 0x20, 0x15, 0xff}
 )
 
 const (
@@ -35,4 +40,8 @@ const (
 	Plasma
 	Metal
 	Void
+)
+
+var (
+	MenuFont = basicfont.Face7x13
 )

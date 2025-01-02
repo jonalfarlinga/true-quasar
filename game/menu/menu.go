@@ -7,28 +7,31 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-var PlayButton MenuButton = MenuButton{
+var PlayButton common.Button = common.Button{
 	X:      common.ScreenWidth/2 - 100,
 	Y:      common.ScreenHeight/2 - 125,
 	Width:  200,
 	Height: 50,
 	Text:   "Play",
+	Active: true,
 }
 
-var CreateButton MenuButton = MenuButton{
+var CreateButton common.Button = common.Button{
 	X:      common.ScreenWidth/2 - 100,
 	Y:      common.ScreenHeight/2 - 25,
 	Width:  200,
 	Height: 50,
 	Text:   "Create",
+	Active: true,
 }
 
-var ExitButton MenuButton = MenuButton{
+var ExitButton common.Button = common.Button{
 	X:      common.ScreenWidth/2 - 100,
 	Y:      common.ScreenHeight/2 + 75,
 	Width:  200,
 	Height: 50,
 	Text:   "Exit",
+	Active: true,
 }
 
 func Update() {
