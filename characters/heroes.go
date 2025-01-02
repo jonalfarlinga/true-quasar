@@ -17,6 +17,7 @@ type Hero struct {
 	ActionList  []*actions.Action
 	Cooldowns   []int
 	HeroImage   *ebiten.Image
+	IconImage   *ebiten.Image
 	BannerImage *ebiten.Image
 }
 
@@ -51,7 +52,8 @@ func NewHero(name string, statistics *stats.Statistics, actionList []*actions.Ac
 		Description: "A hero",
 		ActionList:  actionList,
 		Cooldowns:   make([]int, len(actionList)),
-		HeroImage:   assets.MustLoadImage("assets/images/vanguard_hero.png"),
-		BannerImage: assets.MustLoadImage("assets/images/vanguard_banner.png"),
+		HeroImage:   assets.MustLoadImage("images/vanguard_hero.png"),
+		IconImage:   assets.MustLoadImage("images/vanguard_icon.png"),
+		BannerImage: assets.MustLoadImage("images/vanguard_banner.png"),
 	}
 }

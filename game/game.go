@@ -3,14 +3,22 @@ package game
 import (
 	"quasar/characters"
 	"quasar/common"
+	"quasar/game/draft"
 	"quasar/game/menu"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 type Game struct {
-	Team      []Team
+	Team      *characters.Team
 	TurnOrder []*characters.Hero
+}
+
+func NewGame() *Game {
+	return &Game{
+		Team:      characters.NewTeam(),
+		TurnOrder: make([]*characters.Hero, 4),
+	}
 }
 
 func (g *Game) Update() error {
@@ -18,7 +26,7 @@ func (g *Game) Update() error {
 	case common.StateMenu:
 		menu.Update()
 	case common.StateDraft:
-		// Draft logic goes here
+		draft.Update(g.Team)
 	case common.StateCombat:
 		// Combat logic goes here
 	}
@@ -27,16 +35,18 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
+	screen.Fill(common.BackgroundColor)
+
 	switch common.GameState {
 	case common.StateMenu:
 		menu.Draw(screen)
 	case common.StateDraft:
-		// Draw draft screen
+		draft.Draw(screen, g.Team)
 	case common.StateCombat:
 		// Draw combat screen
 	}
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	return outsideWidth, outsideHeight
+	return common.ScreenWidth, common.ScreenHeight
 }

@@ -1,11 +1,11 @@
-package game
+package characters
 
 import (
-	"quasar/characters"
 	"quasar/common"
 )
+
 type Team struct {
-	Heroes      []*characters.Hero
+	Heroes      []*Hero
 	DamageDealt []int
 	DamageTaken []int
 	HealsDealt  []int
@@ -13,7 +13,7 @@ type Team struct {
 
 func NewTeam() *Team {
 	t := &Team{}
-	t.Heroes = make([]*characters.Hero, 4)
+	t.Heroes = make([]*Hero, 4)
 	t.DamageDealt = make([]int, 4)
 	t.DamageTaken = make([]int, 4)
 	t.HealsDealt = make([]int, 4)
@@ -87,7 +87,7 @@ func (t *Team) CalculateBonuses() {
 			}
 			if plasma {
 				s.A_Atk += 1
-		}
+			}
 		case common.Nexus:
 			s := hero.GetStats()
 			if antimatter {

@@ -1,16 +1,17 @@
 package main
 
 import (
-	"quasar/game"
 	"quasar/common"
+	"quasar/game"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func main() {
 	// Create a new game instance
-	g := &game.Game{}
+	g := game.NewGame()
 	common.GameState = common.StateMenu
+	// draft.DraftState = draft.DraftStateFirst
 
 	ebiten.SetWindowSize(common.ScreenWidth, common.ScreenHeight)
 	ebiten.SetFullscreen(true)
