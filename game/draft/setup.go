@@ -24,10 +24,10 @@ var draftSelection = -1
 var saveSelection = -1
 
 var exitButton common.Button = common.Button{
-	X:      common.ScreenWidth - 45,
+	X:      common.ScreenWidth - 55,
 	Y:      15,
-	Width:  30,
-	Height: 30,
+	Width:  40,
+	Height: 40,
 	Text:   "X",
 	Active: true,
 }

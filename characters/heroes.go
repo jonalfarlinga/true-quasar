@@ -1,6 +1,7 @@
 package characters
 
 import (
+	"fmt"
 	"math/rand"
 	"quasar/assets"
 	"quasar/characters/actions"
@@ -31,7 +32,13 @@ func (h *Hero) GetActionList() []*actions.Action {
 	return h.ActionList
 }
 
-func NewHero(id int, name string, description string, heroType uint8, role uint8, statistics *stats.Statistics, actionList []*actions.Action, heroImage, iconImage, bannerImage string) *Hero {
+func (h *Hero) Draw(screen *ebiten.Image, x, y int) {
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(float64(x), float64(y))
+	screen.DrawImage(h.HeroImage, op)
+}
+
+func NewHero(id int, name string, description string, heroType uint8, role uint8, statistics *stats.Statistics, actionList []*actions.Action) *Hero {
 	return &Hero{
 		id:          id,
 		Name:        name,
@@ -41,9 +48,9 @@ func NewHero(id int, name string, description string, heroType uint8, role uint8
 		Stats:       statistics,
 		ActionList:  actionList,
 		Cooldowns:   make([]int, len(actionList)),
-		HeroImage:   assets.MustLoadImage(heroImage),
-		IconImage:   assets.MustLoadImage(iconImage),
-		BannerImage: assets.MustLoadImage(bannerImage),
+		HeroImage:   assets.MustLoadImage(fmt.Sprintf("images/%s_hero.png", name)),
+		IconImage:   assets.MustLoadImage(fmt.Sprintf("images/%s_icon.png", name)),
+		BannerImage: assets.MustLoadImage(fmt.Sprintf("images/%s_banner.png", name)),
 	}
 }
 
@@ -58,8 +65,8 @@ func DefaultHero(name string, statistics *stats.Statistics, actionList []*action
 	return &Hero{
 		Name:        name,
 		Stats:       statistics,
-		Type:        uint8(rand.Intn(7)),
-		Description: "A hero",
+		Type:        uint8(rand.Intn(6)),
+		Description: "A long description about a hero to test the word wrapping function.",
 		ActionList:  actionList,
 		Cooldowns:   make([]int, len(actionList)),
 		HeroImage:   assets.MustLoadImage("images/vanguard_hero.png"),

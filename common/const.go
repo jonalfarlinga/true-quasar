@@ -44,12 +44,32 @@ const (
 	Void
 )
 
+var (
+	HeroTypeNames = map[uint8]string{
+		Nexus:      "Nexus",
+		Antimatter: "Antimatter",
+		Graviton:   "Graviton",
+		Plasma:     "Plasma",
+		Metal:      "Metal",
+		Void:       "Void",
+	}
+)
+
 // Hero Roles
 const (
 	Striker uint8 = iota
 	Defender
 	Controller
 	Channeler
+)
+
+var (
+	HeroRoleNames = map[uint8]string{
+		Striker:    "Striker",
+		Defender:   "Defender",
+		Controller: "Controller",
+		Channeler:  "Channeler",
+	}
 )
 
 var (

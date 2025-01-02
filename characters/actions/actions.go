@@ -11,7 +11,7 @@ type Action struct {
 
 func ActionsDefault() []*Action {
 	return []*Action{
-
+		list["Basic Attack"],
 	}
 }
 
@@ -23,4 +23,12 @@ func NewActionList(actionList string) []*Action {
 		actions = append(actions, list[name])
 	}
 	return actions
+}
+
+func ActionListToString(acts []*Action) string {
+	names := make([]string, 0, len(acts))
+	for _, act := range acts {
+		names = append(names, act.Name)
+	}
+	return strings.Join(names, ",")
 }
