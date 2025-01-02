@@ -25,4 +25,4 @@ go.work.sum
 .env
 
 # raw image files
-*.xcf
+assets/images/*.xcf

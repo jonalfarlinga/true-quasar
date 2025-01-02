@@ -27,9 +27,9 @@ func (dc *DraftCard) Draw(screen *ebiten.Image, drafted, saved bool) {
 	// Draw the card
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Scale(150/float64(dc.Hero.BannerImage.Bounds().Dx()), 150/float64(dc.Hero.BannerImage.Bounds().Dx()))
-	op.GeoM.Translate(float64(dc.x+10), float64(dc.y+10))
+	op.GeoM.Translate(float64(dc.x+10), float64(dc.y+15))
 	screen.DrawImage(dc.Hero.BannerImage, op)
-	text.Draw(screen, dc.Hero.Name, common.MenuFont, int(op.GeoM.Element(0, 2)), int(op.GeoM.Element(1, 2)), color.White)
+	text.Draw(screen, dc.Hero.Name, common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))-2, color.White)
 
 }
 

@@ -4,6 +4,7 @@ go 1.22.4
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.8.6
+	github.com/joho/godotenv v1.5.1
 	golang.org/x/image v0.20.0
 )
 

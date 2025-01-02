@@ -16,7 +16,25 @@ type Statistics struct {
 	ActionDice int
 }
 
-func StatsDefault() *Statistics {
+func NewStats(resilience int, pAtk int, aAtk int, wAtk int, pDef int, aDef int, wDef int, pBoost int, aBoost int, wBoost int, speed int, actionDice int) *Statistics {
+	return &Statistics{
+		Resilience: resilience,
+		ResCurrent: resilience,
+		P_Atk:      pAtk,
+		A_Atk:      aAtk,
+		W_Atk:      wAtk,
+		P_Def:      pDef,
+		A_Def:      aDef,
+		W_Def:      wDef,
+		P_Boost:    pBoost,
+		A_Boost:    aBoost,
+		W_Boost:    wBoost,
+		Speed:      speed,
+		ActionDice: actionDice,
+	}
+}
+
+func DefaultStats() *Statistics {
 	return &Statistics{
 		Resilience: 50,
 		ResCurrent: 50,

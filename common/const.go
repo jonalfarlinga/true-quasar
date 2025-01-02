@@ -31,8 +31,10 @@ var (
 	ButtonOffColor   = color.RGBA{0x30, 0x30, 0x30, 0xff}
 	GoldColor        = color.RGBA{0xff, 0xd7, 0x00, 0xff}
 	RedColor         = color.RGBA{0xDD, 0x20, 0x15, 0xff}
+	PanelColor       = color.RGBA{0x30, 0x30, 0xA0, 0xFF}
 )
 
+// Hero Types
 const (
 	Nexus uint8 = iota
 	Antimatter
@@ -40,6 +42,14 @@ const (
 	Plasma
 	Metal
 	Void
+)
+
+// Hero Roles
+const (
+	Striker uint8 = iota
+	Defender
+	Controller
+	Channeler
 )
 
 var (

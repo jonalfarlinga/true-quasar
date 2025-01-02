@@ -8,6 +8,4 @@ import (
 type Character interface {
 	GetStats() *stats.Statistics
 	GetActionList() []*actions.Action
-	DrawHero()
-	DrawCard()
 }

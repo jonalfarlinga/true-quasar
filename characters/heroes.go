@@ -10,9 +10,11 @@ import (
 )
 
 type Hero struct {
+	id          int
 	Name        string
 	Description string
 	Type        uint8
+	Role        uint8
 	Stats       *stats.Statistics
 	ActionList  []*actions.Action
 	Cooldowns   []int
@@ -29,17 +31,25 @@ func (h *Hero) GetActionList() []*actions.Action {
 	return h.ActionList
 }
 
-func (h *Hero) DrawHero() {
-	// Draw the hero on the screen
+func NewHero(id int, name string, description string, heroType uint8, role uint8, statistics *stats.Statistics, actionList []*actions.Action, heroImage, iconImage, bannerImage string) *Hero {
+	return &Hero{
+		id:          id,
+		Name:        name,
+		Description: description,
+		Type:        heroType,
+		Role:        role,
+		Stats:       statistics,
+		ActionList:  actionList,
+		Cooldowns:   make([]int, len(actionList)),
+		HeroImage:   assets.MustLoadImage(heroImage),
+		IconImage:   assets.MustLoadImage(iconImage),
+		BannerImage: assets.MustLoadImage(bannerImage),
+	}
 }
 
-func (h *Hero) DrawCard() {
-	// Draw the hero's card on the screen
-}
-
-func NewHero(name string, statistics *stats.Statistics, actionList []*actions.Action) *Hero {
+func DefaultHero(name string, statistics *stats.Statistics, actionList []*actions.Action) *Hero {
 	if statistics == nil {
-		statistics = stats.StatsDefault()
+		statistics = stats.DefaultStats()
 	}
 	if len(actionList) == 0 {
 		actionList = actions.ActionsDefault()
@@ -56,4 +66,8 @@ func NewHero(name string, statistics *stats.Statistics, actionList []*actions.Ac
 		IconImage:   assets.MustLoadImage("images/vanguard_icon.png"),
 		BannerImage: assets.MustLoadImage("images/vanguard_banner.png"),
 	}
+}
+
+func (h *Hero) GetID() int {
+	return h.id
 }

@@ -56,10 +56,10 @@ func getDraftPool() {
 	for i := 0; i < len(draftLineUp); i++ {
 		if i < 4 {
 			a := actions.ActionsDefault()
-			s := stats.StatsDefault()
+			s := stats.DefaultStats()
 			n := "Hero " + strconv.Itoa(rand.Intn(100))
 			draftLineUp[i] = &DraftCard{
-				Hero:   characters.NewHero(n, s, a),
+				Hero:   characters.DefaultHero(n, s, a),
 				Active: true,
 			}
 		}
