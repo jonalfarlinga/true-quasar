@@ -9,7 +9,7 @@ var list map[string]*Action = map[string]*Action{
 			// Attack logic goes here
 		},
 	},
-	"Plasma Beam": {
+	"Plasma Barrage": {
 		Name:        "Plasma Barrage",
 		Description: "Launch a series of plasma bolts, dealing high damage to a single target",
 		Cooldown: 0,
