@@ -9,7 +9,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2/text"
 )
 
-var placeholder = assets.MustLoadImage("images/placeholder.png")
+var placeholder, _ = assets.MustLoadImage("images/placeholder.png")
 
 type Team struct {
 	Heroes      []*Hero
