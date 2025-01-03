@@ -29,8 +29,9 @@ func Update(team *characters.Team) {
 			if draftState < DraftStateDone {
 				lockIn(team)
 			}
-		} else if draftState == DraftStateDone && common.Collide(x, y, &fightButton) {
+		} else if fightButton.Active && common.Collide(x, y, &fightButton) {
 			common.GameState = common.StateCombat
+			draftState = DraftStateStart
 		}
 
 		for i, card := range draftLineUp {
@@ -93,6 +94,7 @@ func lockIn(team *characters.Team) {
 	lockInButton.Active = false
 	draftState++
 	if draftState == DraftStateDone {
+		fightButton.Active = true
 		for _, card := range draftLineUp {
 			card.Active = false
 		}

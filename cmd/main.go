@@ -12,14 +12,18 @@ import (
 )
 
 func main() {
-	// Create a new game instance
+	// Initialize background processes
 	err := db.InitMySQL(getEnv())
 	if err != nil {
 		log.Println(err)
 	}
+	common.LoadEmblems()
+
+	// Create a new game instance
 	g := game.NewGame()
 	common.GameState = common.StateMenu
 
+	// Set window size and run in fullscreen
 	ebiten.SetWindowSize(common.ScreenWidth, common.ScreenHeight)
 	ebiten.SetFullscreen(true)
 

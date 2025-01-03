@@ -3,6 +3,7 @@ package game
 import (
 	"quasar/characters"
 	"quasar/common"
+	"quasar/game/combat"
 	"quasar/game/draft"
 	"quasar/game/menu"
 
@@ -28,7 +29,7 @@ func (g *Game) Update() error {
 	case common.StateDraft:
 		draft.Update(g.Team)
 	case common.StateCombat:
-		// Combat logic goes here
+		combat.Update(g.Team)
 	}
 
 	return nil
@@ -43,7 +44,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case common.StateDraft:
 		draft.Draw(screen, g.Team)
 	case common.StateCombat:
-		// Draw combat screen
+		combat.Draw(screen)
 	}
 }
 
