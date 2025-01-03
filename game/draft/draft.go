@@ -68,7 +68,7 @@ func Draw(screen *ebiten.Image, team *characters.Team) {
 
 	// Draw hero pool
 	for i, card := range draftLineUp {
-		card.Draw(screen, i == draftSelection, i == saveSelection)
+		card.Draw(screen, i == draftSelection, i == saveSelection || i > 3)
 	}
 
 	// Draw buttons

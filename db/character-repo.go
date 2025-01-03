@@ -100,9 +100,9 @@ var RepoList = []*characters.Hero{
 		"A hero that excels at dealing damage and controlling the battlefield.",
 		common.Graviton,
 		common.Striker,
-		stats.NewStats(50, 120, 120, 120, 90, 90, 90, 0, 1, 1, 110, 30),
+		stats.NewStats(50, 120, 120, 120, 110, 90, 90, 0, 1, 1, 110, 30),
 		actions.NewActionList(
-			"Void Implosion,Deflection Field,Graviton Surge",
+			"Concentrated Strike,Deflection Field,Graviton Surge",
 		),
 	),
 	// Hero9

@@ -9,12 +9,12 @@ import (
 var Emblems []*ebiten.Image
 
 func LoadEmblems() {
+	NexusEmblem, _ := assets.MustLoadImage("images/emblem/nexus.png")
 	AntimatterEmblem, _ := assets.MustLoadImage("images/emblem/antimatter.png")
 	GravitonEmblem, _ := assets.MustLoadImage("images/emblem/graviton.png")
 	PlasmaEmblem, _ := assets.MustLoadImage("images/emblem/plasma.png")
 	MetalEmblem, _ := assets.MustLoadImage("images/emblem/metal.png")
 	VoidEmblem, _ := assets.MustLoadImage("images/emblem/void.png")
-	NexusEmblem, _ := assets.MustLoadImage("images/emblem/nexus.png")
 	StrikerEmblem, _ := assets.MustLoadImage("images/emblem/striker.png")
 	DefenderEmblem, _ := assets.MustLoadImage("images/emblem/defender.png")
 	ChannelerEmblem, _ := assets.MustLoadImage("images/emblem/channeler.png")

@@ -6,12 +6,13 @@ type Action struct {
 	Name        string
 	Description string
 	Cooldown    int
+	Type        uint8
 	Fn          func()
 }
 
 func ActionsDefault() []*Action {
 	return []*Action{
-		list["Basic Attack"],
+		list["Power Strike"],
 	}
 }
 

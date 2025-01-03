@@ -30,15 +30,23 @@ func NewTeam() *Team {
 func (t *Team) DrawIcons(screen *ebiten.Image, x, y float64) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(float64(common.ScreenWidth)/2+x, y)
+	emb_op := &ebiten.DrawImageOptions{}
+	emb_op.GeoM.Scale(0.25, 0.25)
+	emb_op.GeoM.Translate(float64(common.ScreenWidth)/2+x, y)
 	for i := 0; i < 4; i++ {
 		hero := t.Heroes[i]
 		if hero != nil {
 			screen.DrawImage(hero.IconImage, op)
 			text.Draw(screen, hero.Name, common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+160, color.White)
+			screen.DrawImage(common.Emblems[hero.Type], emb_op)
+			emb_op.GeoM.Translate(125, 0)
+			screen.DrawImage(common.Emblems[hero.Role+6], emb_op)
+			emb_op.GeoM.Translate(-125, 0)
 		} else {
 			screen.DrawImage(placeholder, op)
 		}
 		op.GeoM.Translate(160, 0)
+		emb_op.GeoM.Translate(160, 0)
 	}
 }
 
