@@ -1,15 +1,12 @@
 package game
 
 import (
-	"fmt"
 	"quasar/characters"
 	"quasar/common"
-	"quasar/db"
 	"quasar/game/draft"
 	"quasar/game/menu"
 
 	"github.com/hajimehoshi/ebiten/v2"
-	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Game struct {
@@ -48,7 +45,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case common.StateCombat:
 		// Draw combat screen
 	}
-	ebitenutil.DebugPrint(screen, fmt.Sprintf("%v", db.Pool))
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {

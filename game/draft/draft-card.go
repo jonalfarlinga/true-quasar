@@ -25,7 +25,7 @@ func (dc *DraftCard) Draw(screen *ebiten.Image, drafted, saved bool) {
 	} else {
 		vector.DrawFilledRect(screen, float32(dc.x), float32(dc.y), 170, 450, common.BackgroundColor, false)
 	}
-	
+
 	op := &ebiten.DrawImageOptions{}
 	scale := 150 / float64(dc.Hero.BannerImage.Bounds().Dx())
 	bannerHeight := int(float64(dc.Hero.BannerImage.Bounds().Dy()) * scale)
@@ -34,8 +34,8 @@ func (dc *DraftCard) Draw(screen *ebiten.Image, drafted, saved bool) {
 	screen.DrawImage(dc.Hero.BannerImage, op)
 	text.Draw(screen, dc.Hero.Name, common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))-2, color.White)
 	text.Draw(screen, common.HeroTypeNames[dc.Hero.Type], common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+bannerHeight+22, color.White)
-	text.Draw(screen, common.HeroRoleNames[dc.Hero.Role], common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+bannerHeight+32, color.White)
-	text.Draw(screen, wrapText(dc.Hero.Description, 20), common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+bannerHeight+42, color.White)
+	text.Draw(screen, common.HeroRoleNames[dc.Hero.Role], common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+bannerHeight+34, color.White)
+	text.Draw(screen, wrapText(dc.Hero.Description, 20), common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+bannerHeight+46, color.White)
 }
 
 func (dc *DraftCard) GetBounds() (int, int, int, int) {

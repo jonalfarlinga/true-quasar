@@ -8,7 +8,7 @@ import (
 	"quasar/characters/stats"
 )
 
-func CreateHero(db *sql.DB, hero *characters.Hero) error {
+func InsertHero(db *sql.DB, hero *characters.Hero) error {
 	query := `INSERT INTO Heroes (
 		name, description, type, role, action_list,
 		res, P_Atk, A_Atk, W_Atk, P_Def, A_Def, W_Def,
@@ -42,7 +42,7 @@ func GetAllHeroes(db *sql.DB) ([]*characters.Hero, error) {
 	return parseHeroes(rows)
 }
 
-func GetHeroesByType(db *sql.DB, heroType int) ([]*characters.Hero, error) {
+func GetHeroesByType(db *sql.DB, heroType uint8) ([]*characters.Hero, error) {
 	query := `SELECT * FROM Heroes WHERE type = ?;`
 	rows, err := db.Query(query, heroType)
 	if err != nil {
@@ -52,7 +52,7 @@ func GetHeroesByType(db *sql.DB, heroType int) ([]*characters.Hero, error) {
 	return parseHeroes(rows)
 }
 
-func GetHeroesByRole(db *sql.DB, role int) ([]*characters.Hero, error) {
+func GetHeroesByRole(db *sql.DB, role uint8) ([]*characters.Hero, error) {
 	query := `SELECT * FROM Heroes WHERE role = ?;`
 	rows, err := db.Query(query, role)
 	if err != nil {
@@ -66,9 +66,9 @@ func parseHeroes(rows *sql.Rows) ([]*characters.Hero, error) {
 	heroes := []*characters.Hero{}
 	for rows.Next() {
 		var (
-			name, description, actionList string
-			id, heroType, role, res, pAtk, aAtk, wAtk, pDef, aDef, wDef      int
-			pBoost, aBoost, wBoost, speed, actionDice                        int
+			name, description, actionList                               string
+			id, heroType, role, res, pAtk, aAtk, wAtk, pDef, aDef, wDef int
+			pBoost, aBoost, wBoost, speed, actionDice                   int
 		)
 		err := rows.Scan(
 			&id, &name, &description, &heroType, &role, &actionList,

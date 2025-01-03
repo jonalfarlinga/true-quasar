@@ -15,7 +15,6 @@ var PlayButton common.Button = common.Button{
 	Text:   "Play",
 	Active: true,
 }
-
 var CreateButton common.Button = common.Button{
 	X:      common.ScreenWidth/2 - 100,
 	Y:      common.ScreenHeight/2 - 25,
@@ -24,7 +23,6 @@ var CreateButton common.Button = common.Button{
 	Text:   "Create",
 	Active: true,
 }
-
 var ExitButton common.Button = common.Button{
 	X:      common.ScreenWidth/2 - 100,
 	Y:      common.ScreenHeight/2 + 75,

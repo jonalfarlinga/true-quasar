@@ -1,13 +1,14 @@
 package db
 
 import (
+	"database/sql"
 	"quasar/characters"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
 	"quasar/common"
 )
 
-var repoList = []*characters.Hero{
+var RepoList = []*characters.Hero{
 	// Hero1
 	characters.NewHero(
 		-1,
@@ -101,7 +102,7 @@ var repoList = []*characters.Hero{
 		common.Striker,
 		stats.NewStats(50, 120, 120, 120, 90, 90, 90, 0, 1, 1, 110, 30),
 		actions.NewActionList(
-			"Void Implosion,Deflection Field,Graciton Surge",
+			"Void Implosion,Deflection Field,Graviton Surge",
 		),
 	),
 	// Hero9
@@ -149,7 +150,7 @@ var repoList = []*characters.Hero{
 		common.Controller,
 		stats.NewStats(70, 90, 80, 80, 120, 120, 120, 1, 0, 0, 95, 30),
 		actions.NewActionList(
-			"Charging Slam,Graviton Collapse,Graviton Overload",
+			"Charging Slam,Graviton Collapse,Graviton Surge",
 		),
 	),
 	// Hero13
@@ -185,7 +186,7 @@ var repoList = []*characters.Hero{
 		common.Channeler,
 		stats.NewStats(70, 90, 80, 80, 120, 120, 120, 1, 0, 0, 90, 30),
 		actions.NewActionList(
-			"Charging Slam,Graviton Collapse,Graviton Overload",
+			"Charging Slam,Graviton Collapse,Graviton Surge",
 		),
 	),
 	// Hero16
@@ -197,7 +198,13 @@ var repoList = []*characters.Hero{
 		common.Channeler,
 		stats.NewStats(60, 80, 80, 80, 100, 130, 130, 1, 0, 0, 95, 30),
 		actions.NewActionList(
-			"Graviton Lock,Deflection Field,Graviton Overload",
+			"Graviton Lock,Deflection Field,Plasma Overload",
 		),
 	),
+}
+
+func installHeroRepo(db *sql.DB) {
+	for _, hero := range RepoList {
+		InsertHero(db, hero)
+	}
 }

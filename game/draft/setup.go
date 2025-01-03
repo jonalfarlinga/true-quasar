@@ -3,10 +3,8 @@ package draft
 import (
 	"math/rand"
 	"quasar/characters"
-	"quasar/characters/actions"
-	"quasar/characters/stats"
 	"quasar/common"
-	"strconv"
+	"quasar/db"
 )
 
 const (
@@ -53,17 +51,45 @@ func getDraftPool() {
 	mod := float32((len(draftLineUp) % 2) * 5)
 	x := int(float32(common.ScreenWidth/2) - (180 * n) + mod)
 	y := 225
+	list := getHeroes()
 	for i := 0; i < len(draftLineUp); i++ {
 		if i < 4 {
-			a := actions.ActionsDefault()
-			s := stats.DefaultStats()
-			n := "Hero " + strconv.Itoa(rand.Intn(100))
+			// a := actions.ActionsDefault()
+			// s := stats.DefaultStats()
+			// n := "Hero " + strconv.Itoa(rand.Intn(100))
+
 			draftLineUp[i] = &DraftCard{
-				Hero:   characters.DefaultHero(n, s, a),
+				Hero:   list[i],
 				Active: true,
 			}
 		}
 		draftLineUp[i].SetPosition(x, y)
 		x += 180
 	}
+}
+
+func getHeroes() []*characters.Hero {
+	var heroes []*characters.Hero
+	var err error
+	switch draftState {
+	case DraftStateStart:
+		// get all defenders
+		heroes, err = db.GetHeroesByRole(db.Pool, common.Defender)
+	case DraftStateFirst:
+		// get all strikers
+		heroes, err = db.GetHeroesByRole(db.Pool, common.Striker)
+	case DraftStateSecond:
+		// get all controllers
+		heroes, err = db.GetHeroesByRole(db.Pool, common.Controller)
+	case DraftStateThird:
+		// get all channelers
+		heroes, err = db.GetHeroesByRole(db.Pool, common.Channeler)
+	}
+	if err != nil {
+		return nil
+	}
+	rand.Shuffle(len(heroes), func(i, j int) {
+		heroes[i], heroes[j] = heroes[j], heroes[i]
+	})
+	return heroes
 }

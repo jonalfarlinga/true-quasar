@@ -41,15 +41,15 @@ func (h *Hero) Draw(screen *ebiten.Image, x, y int) {
 func NewHero(id int, name string, description string, heroType uint8, role uint8, statistics *stats.Statistics, actionList []*actions.Action) *Hero {
 	heroImg, err := assets.MustLoadImage(fmt.Sprintf("images/%s_hero.png", name))
 	if err != nil {
-		fmt.Println(err)
+		heroImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
 	iconImg, err := assets.MustLoadImage(fmt.Sprintf("images/%s_icon.png", name))
 	if err != nil {
-		fmt.Println(err)
+		iconImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
 	bannerImg, err := assets.MustLoadImage(fmt.Sprintf("images/%s_banner.png", name))
 	if err != nil {
-		fmt.Println(err)
+		bannerImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
 	return &Hero{
 		id:          id,
@@ -75,15 +75,15 @@ func DefaultHero(name string, statistics *stats.Statistics, actionList []*action
 	}
 	heroImg, err := assets.MustLoadImage("images/vanguard_hero.png")
 	if err != nil {
-		fmt.Println(err)
+		heroImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
 	iconImg, err := assets.MustLoadImage("images/vanguard_icon.png")
 	if err != nil {
-		fmt.Println(err)
+		iconImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
 	bannerImg, err := assets.MustLoadImage("images/vanguard_banner.png")
 	if err != nil {
-		fmt.Println(err)
+		bannerImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
 
 	return &Hero{

@@ -7,12 +7,14 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var Pool *sql.DB
 
 func InitMySQL(dsn string) error {
-	db, err := sql.Open("msql", dsn)
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return fmt.Errorf("error opening database: %v", err)
 	}
@@ -31,7 +33,7 @@ func InitMySQL(dsn string) error {
 func initTables(db *sql.DB) error {
 	query := `CREATE TABLE IF NOT EXISTS Heroes (
 		id INT AUTO_INCREMENT PRIMARY KEY,
-		name VARCHAR(255),
+		name VARCHAR(255) UNIQUE,
 		description TEXT,
 		type TINYINT,
 		role TINYINT,
@@ -54,14 +56,16 @@ func initTables(db *sql.DB) error {
 		return fmt.Errorf("error creating Heroes table: %v", err)
 	}
 
-	query = `CREATE TABLE IF NOT EXISTS Actions (
-		id INT AUTO_INCREMENT PRIMARY KEY,
-		name VARCHAR(255),
-	);`
-	_, err = db.Exec(query)
-	if err != nil {
-		return fmt.Errorf("error creating Actions table: %v", err)
-	}
+	installHeroRepo(db)
+
+	// query = `CREATE TABLE IF NOT EXISTS Actions (
+	// 	id INT AUTO_INCREMENT PRIMARY KEY,
+	// 	name VARCHAR(255),
+	// );`
+	// _, err = db.Exec(query)
+	// if err != nil {
+	// 	return fmt.Errorf("error creating Actions table: %v", err)
+	// }
 	return nil
 }
 

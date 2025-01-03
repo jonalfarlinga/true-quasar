@@ -13,11 +13,11 @@ import (
 
 func main() {
 	// Create a new game instance
-	g := game.NewGame()
 	err := db.InitMySQL(getEnv())
 	if err != nil {
 		log.Println(err)
 	}
+	g := game.NewGame()
 	common.GameState = common.StateMenu
 
 	ebiten.SetWindowSize(common.ScreenWidth, common.ScreenHeight)

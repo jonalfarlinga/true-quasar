@@ -84,7 +84,7 @@ func lockIn(team *characters.Team) {
 	if draftSelection > 3 {
 		draftLineUp = append(draftLineUp[:draftSelection], draftLineUp[draftSelection+1:]...)
 	}
-	if draftState < DraftStateDone {
+	if draftState < DraftStateFourth {
 		draftLineUp = append(draftLineUp, draftLineUp[saveSelection])
 		getDraftPool()
 	}
