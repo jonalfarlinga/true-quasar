@@ -9,15 +9,15 @@ import (
 var Emblems []*ebiten.Image
 
 func LoadEmblems() {
-	NexusEmblem, _ := assets.MustLoadImage("images/emblem/nexus.png")
-	AntimatterEmblem, _ := assets.MustLoadImage("images/emblem/antimatter.png")
-	GravitonEmblem, _ := assets.MustLoadImage("images/emblem/graviton.png")
-	PlasmaEmblem, _ := assets.MustLoadImage("images/emblem/plasma.png")
-	MetalEmblem, _ := assets.MustLoadImage("images/emblem/metal.png")
-	VoidEmblem, _ := assets.MustLoadImage("images/emblem/void.png")
-	StrikerEmblem, _ := assets.MustLoadImage("images/emblem/striker.png")
-	DefenderEmblem, _ := assets.MustLoadImage("images/emblem/defender.png")
-	ChannelerEmblem, _ := assets.MustLoadImage("images/emblem/channeler.png")
-	ControllerEmblem, _ := assets.MustLoadImage("images/emblem/controller.png")
-	Emblems = []*ebiten.Image{AntimatterEmblem, GravitonEmblem, PlasmaEmblem, MetalEmblem, VoidEmblem, NexusEmblem, StrikerEmblem, DefenderEmblem, ChannelerEmblem, ControllerEmblem}
+	nexusEmblem, _ := assets.MustLoadImage("images/emblem/nexus.png")
+	antimatterEmblem, _ := assets.MustLoadImage("images/emblem/antimatter.png")
+	gravitonEmblem, _ := assets.MustLoadImage("images/emblem/graviton.png")
+	plasmaEmblem, _ := assets.MustLoadImage("images/emblem/plasma.png")
+	metalEmblem, _ := assets.MustLoadImage("images/emblem/metal.png")
+	voidEmblem, _ := assets.MustLoadImage("images/emblem/void.png")
+	strikerEmblem, _ := assets.MustLoadImage("images/emblem/striker.png")
+	defenderEmblem, _ := assets.MustLoadImage("images/emblem/defender.png")
+	channelerEmblem, _ := assets.MustLoadImage("images/emblem/channeler.png")
+	controllerEmblem, _ := assets.MustLoadImage("images/emblem/controller.png")
+	Emblems = []*ebiten.Image{nexusEmblem, antimatterEmblem, gravitonEmblem, plasmaEmblem, metalEmblem, voidEmblem, strikerEmblem, defenderEmblem, channelerEmblem, controllerEmblem}
 }
