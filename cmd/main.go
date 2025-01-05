@@ -27,6 +27,9 @@ func main() {
 	ebiten.SetWindowSize(common.ScreenWidth, common.ScreenHeight)
 	ebiten.SetFullscreen(true)
 
+	// Set the frame rate
+	ebiten.SetMaxTPS(common.FrameRate)
+
 	// Run the game
 	if err := ebiten.RunGame(g); err != nil {
 		panic(err)

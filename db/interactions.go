@@ -20,7 +20,7 @@ func InsertHero(db *sql.DB, hero *characters.Hero) error {
 	_, err := db.Exec(
 		query,
 		hero.Name, hero.Description, hero.Type, hero.Role, actionListStr,
-		hero.Stats.Resilience, hero.Stats.P_Atk, hero.Stats.A_Atk, hero.Stats.W_Atk,
+		hero.Stats.Resilience, hero.Stats.Attack,
 		hero.Stats.P_Def, hero.Stats.A_Def, hero.Stats.W_Def,
 		hero.Stats.P_Boost, hero.Stats.A_Boost, hero.Stats.W_Boost,
 		hero.Stats.Speed, hero.Stats.ActionDice,
@@ -67,16 +67,16 @@ func parseHeroes(rows *sql.Rows) ([]*characters.Hero, error) {
 	for rows.Next() {
 		var (
 			name, description, actionList                               string
-			id, heroType, role, res, pAtk, aAtk, wAtk, pDef, aDef, wDef int
+			id, heroType, role, res, attack, pDef, aDef, wDef int
 			pBoost, aBoost, wBoost, speed, actionDice                   int
 		)
 		err := rows.Scan(
 			&id, &name, &description, &heroType, &role, &actionList,
-			&res, &pAtk, &aAtk, &wAtk, &pDef, &aDef, &wDef,
+			&res, &attack, &pDef, &aDef, &wDef,
 			&pBoost, &aBoost, &wBoost, &speed, &actionDice,
 		)
 		st := stats.NewStats(
-			res, pAtk, aAtk, wAtk, pDef, aDef, wDef,
+			res, attack, pDef, aDef, wDef,
 			pBoost, aBoost, wBoost, speed, actionDice,
 		)
 		al := actions.NewActionList(actionList)

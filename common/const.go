@@ -16,6 +16,7 @@ const (
 const (
 	ScreenWidth  = 1280
 	ScreenHeight = 768
+	FrameRate = 30
 )
 
 const (
