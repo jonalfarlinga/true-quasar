@@ -73,12 +73,12 @@ var RepoList = []*characters.Hero{
 	characters.NewHero(
 		-1,
 		"Voidwalker",
-		"A hero that excels at dealing damage and controlling the battlefield.",
+		"An enigmatic hero that deals damage over time and attacks multiple enemies.",
 		common.Void,
 		common.Striker,
 		stats.NewStats(50, 120, 90, 90, 90, 0, 1, 1, 90, 30),
 		actions.NewActionList(
-			"Void Implosion,Void Snare,Void Implosion",
+			"Precision Strike,Void Implosion,Graviton Collapse",
 		),
 	),
 	// Hero7
@@ -133,7 +133,7 @@ var RepoList = []*characters.Hero{
 	characters.NewHero(
 		-1,
 		"Dark Sorcerer",
-		"A hero that excels at dealing damage and controlling the battlefield.",
+		"Dabbling in the forbidden arts, the sorcerer deals damage and disrupts enemies.",
 		common.Antimatter,
 		common.Controller,
 		stats.NewStats(45, 130, 90, 100, 80, 0, 2, 0, 100, 30),
@@ -193,10 +193,10 @@ var RepoList = []*characters.Hero{
 	characters.NewHero(
 		-1,
 		"Voidbringer",
-		"A hero who disrupts enemies and empowers allies",
-		common.Graviton,
+		"The voidbringer buffs allies and disrupts enemies, with litte regard for themselves.",
+		common.Void,
 		common.Channeler,
-		stats.NewStats(60, 80, 100, 130, 130, 1, 0, 0, 95, 30),
+		stats.NewStats(60, 80, 75, 75, 130, 1, 0, 0, 95, 30),
 		actions.NewActionList(
 			"Graviton Lock,Deflection Field,Plasma Overload",
 		),
