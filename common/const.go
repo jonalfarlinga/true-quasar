@@ -14,8 +14,8 @@ const (
 )
 
 const (
-	ScreenWidth  = 1280
-	ScreenHeight = 768
+	ScreenWidth float32 = 1280.0
+	ScreenHeight float32 = 768.0
 	FrameRate = 30
 )
 
@@ -33,6 +33,7 @@ var (
 	GoldColor        = color.RGBA{0xff, 0xd7, 0x00, 0xff}
 	RedColor         = color.RGBA{0xDD, 0x20, 0x15, 0xff}
 	PanelColor       = color.RGBA{0x30, 0x30, 0xA0, 0xFF}
+	WhiteColor	   		= color.White
 )
 
 // Hero Types

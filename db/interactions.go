@@ -11,10 +11,10 @@ import (
 func InsertHero(db *sql.DB, hero *characters.Hero) error {
 	query := `INSERT INTO Heroes (
 		name, description, type, role, action_list,
-		res, P_Atk, A_Atk, W_Atk, P_Def, A_Def, W_Def,
+		res, Attack, P_Def, A_Def, W_Def,
 		P_Boost, A_Boost, W_Boost, Speed, ActionDice
 	) VALUES (
-		?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+		?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
     );`
 	actionListStr := actions.ActionListToString(hero.GetActionList())
 	_, err := db.Exec(
@@ -66,9 +66,9 @@ func parseHeroes(rows *sql.Rows) ([]*characters.Hero, error) {
 	heroes := []*characters.Hero{}
 	for rows.Next() {
 		var (
-			name, description, actionList                               string
+			name, description, actionList                     string
 			id, heroType, role, res, attack, pDef, aDef, wDef int
-			pBoost, aBoost, wBoost, speed, actionDice                   int
+			pBoost, aBoost, wBoost, speed, actionDice         int
 		)
 		err := rows.Scan(
 			&id, &name, &description, &heroType, &role, &actionList,

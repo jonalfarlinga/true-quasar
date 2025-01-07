@@ -51,13 +51,13 @@ func (e *Enemy) DrawHero(screen *ebiten.Image, x, y int) {
 func (e *Enemy) DrawCombatHeader(screen *ebiten.Image) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Scale(0.25, 0.25)
-	op.GeoM.Translate(common.ScreenWidth-53, 15)
+	op.GeoM.Translate(common.ScreenWidth-88, 22)
 	screen.DrawImage(common.Emblems[e.Type], op)
-	vector.DrawFilledRect(screen, 15, 15, 1194, 25, common.ButtonOffColor, false)
-	resPercent := 100 * float32(e.Stats.ResCurrent) / float32(e.Stats.Resilience)
-	vector.DrawFilledRect(screen, 18, 18, 1184*resPercent, 19, common.RedColor, false)
+	vector.DrawFilledRect(screen, 15, 18, common.ScreenWidth-115, 25, common.ButtonOffColor, false)
+	resPercent := float32(e.Stats.ResCurrent) / float32(e.Stats.Resilience)
+	vector.DrawFilledRect(screen, 18, 21, (common.ScreenWidth-121)*resPercent, 19, common.RedColor, false)
 	op.GeoM.Reset()
-	op.GeoM.Translate(20, 45)
+	op.GeoM.Translate(20, 55)
 	text.Draw(screen, e.Name, common.MenuFont, int(op.GeoM.Element(0, 2)), int(op.GeoM.Element(1, 2)), color.White)
 }
 

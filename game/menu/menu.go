@@ -37,6 +37,8 @@ func Update() {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &PlayButton) {
 			common.GameState = common.StateDraft
+		} else if common.Collide(x, y, &CreateButton) {
+			common.GameState = common.StateCombat
 		} else if common.Collide(x, y, &ExitButton) {
 			os.Exit(0)
 		}
