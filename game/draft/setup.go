@@ -1,6 +1,7 @@
 package draft
 
 import (
+	"fmt"
 	"math/rand"
 	"quasar/characters"
 	"quasar/common"
@@ -52,12 +53,12 @@ func getDraftPool() {
 	x := int(float32(common.ScreenWidth/2) - (180 * n) + mod)
 	y := 225
 	list := getHeroes()
+	fmt.Printf("%#v", list)
 	for i := 0; i < len(draftLineUp); i++ {
 		if i < 4 {
 			// a := actions.ActionsDefault()
 			// s := stats.DefaultStats()
 			// n := "Hero " + strconv.Itoa(rand.Intn(100))
-
 			draftLineUp[i] = &DraftCard{
 				Hero:   list[i],
 				Active: true,
@@ -71,6 +72,7 @@ func getDraftPool() {
 func getHeroes() []*characters.Hero {
 	var heroes []*characters.Hero
 	var err error
+	fmt.Println("Draft state", draftState)
 	switch draftState {
 	case DraftStateStart:
 		// get all defenders
@@ -84,6 +86,8 @@ func getHeroes() []*characters.Hero {
 	case DraftStateThird:
 		// get all channelers
 		heroes, err = db.GetHeroesByRole(db.Pool, common.Channeler)
+	default:
+
 	}
 	if err != nil {
 		return nil

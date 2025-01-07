@@ -28,7 +28,7 @@ func main() {
 	ebiten.SetFullscreen(true)
 
 	// Set the frame rate
-	ebiten.SetMaxTPS(common.FrameRate)
+	ebiten.SetTPS(common.FrameRate)
 
 	// Run the game
 	if err := ebiten.RunGame(g); err != nil {

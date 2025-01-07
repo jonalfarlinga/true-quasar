@@ -16,7 +16,7 @@ var RepoList = []*characters.Hero{
 		"A front line fighter that excels at taking hits and protecting allies.",
 		common.Metal,
 		common.Defender,
-		stats.NewStats(70, 80, 120, 120, 120, 1, 0, 0, 85, 30),
+		stats.NewStats(70, 85, 120, 120, 120, 1, 0, 0, 85, 30),
 		actions.NewActionList(
 			"Charging Slam,Aegis,Bastion",
 		),
@@ -28,7 +28,7 @@ var RepoList = []*characters.Hero{
 		"A legendary duelist who focuses on damaging single targets while reducing their effectiveness.",
 		common.Nexus,
 		common.Defender,
-		stats.NewStats(60, 100, 100, 100, 100, 1, 1, 1, 90, 30),
+		stats.NewStats(60, 100, 100, 100, 100, 1, 1, 1, 92, 30),
 		actions.NewActionList(
 			"Charging Slam,Graviton Surge,Electron Cage",
 		),
@@ -48,11 +48,11 @@ var RepoList = []*characters.Hero{
 	// Hero4
 	characters.NewHero(
 		-1,
-		"Gravitus",
+		"Gravus Krang",
 		"A hero that excels at controlling the battlefield and protecting allies.",
 		common.Graviton,
 		common.Defender,
-		stats.NewStats(60, 80, 100, 130, 130, 1, 0, 0, 90, 30),
+		stats.NewStats(50, 90, 130, 100, 130, 1, 0, 1, 86, 30),
 		actions.NewActionList(
 			"Graviton Lock,Deflection Field,Bastion",
 		),
@@ -88,7 +88,7 @@ var RepoList = []*characters.Hero{
 		"An ancient order of mercenaries that specializes in avoiding attacks while taking down hard targets.",
 		common.Plasma,
 		common.Striker,
-		stats.NewStats(45, 130, 90, 100, 80, 0, 4, 0, 75, 30),
+		stats.NewStats(45, 125, 85, 100, 80, 0, 4, 0, 89, 30),
 		actions.NewActionList(
 			"Antimatter Strike,Plasma Blast,Graviton Surge",
 		),
@@ -100,7 +100,7 @@ var RepoList = []*characters.Hero{
 		"A free-willed android who joins battles seemingly at random. She is a powerful dealer and preventer of damage.",
 		common.Graviton,
 		common.Striker,
-		stats.NewStats(50, 120, 110, 90, 90, 0, 1, 1, 110, 30),
+		stats.NewStats(50, 135, 85, 70, 90, 0, 1, 1, 110, 30),
 		actions.NewActionList(
 			"Gravitic Riposte,Deflection Field,Graviton Collapse",
 		),
@@ -124,7 +124,7 @@ var RepoList = []*characters.Hero{
 		"Bringing the inscrutable will of the Void, the prophet deals damage over time and slows enemies.",
 		common.Void,
 		common.Controller,
-		stats.NewStats(50, 80, 110, 110, 110, 1, 1, 1, 95, 30),
+		stats.NewStats(50, 85, 115, 115, 115, 1, 0, 1, 95, 30),
 		actions.NewActionList(
 			"Concentrated Strike,Void Implosion,Void Snare",
 		),
@@ -136,7 +136,7 @@ var RepoList = []*characters.Hero{
 		"Dabbling in the forbidden arts, the sorcerer deals damage and disrupts enemies.",
 		common.Antimatter,
 		common.Controller,
-		stats.NewStats(45, 130, 90, 100, 80, 0, 2, 0, 100, 30),
+		stats.NewStats(45, 130, 85, 100, 85, 0, 2, 0, 100, 30),
 		actions.NewActionList(
 			"Antimatter Strike,Antimatter Cascade,Temporal Rift",
 		),
@@ -172,7 +172,7 @@ var RepoList = []*characters.Hero{
 		"An exemplary leader of men, who deals area damage and hastens allies.",
 		common.Plasma,
 		common.Channeler,
-		stats.NewStats(60, 100, 75, 75, 75, 1, 1, 3, 100, 30),
+		stats.NewStats(60, 115, 75, 75, 95, 1, 1, 2, 100, 30),
 		actions.NewActionList(
 			"Plasma Slash,Temporal Rift,Plasma Overload",
 		),
@@ -196,7 +196,7 @@ var RepoList = []*characters.Hero{
 		"The voidbringer buffs allies and disrupts enemies, with litte regard for themselves.",
 		common.Void,
 		common.Channeler,
-		stats.NewStats(60, 80, 75, 75, 130, 1, 0, 0, 95, 30),
+		stats.NewStats(60, 80, 70, 70, 130, 1, 0, 0, 95, 30),
 		actions.NewActionList(
 			"Graviton Lock,Deflection Field,Plasma Overload",
 		),

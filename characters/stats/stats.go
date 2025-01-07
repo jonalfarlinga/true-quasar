@@ -42,3 +42,19 @@ func DefaultStats() *Statistics {
 		ActionDice: 30,
 	}
 }
+
+func ZeroStats() *Statistics {
+	return &Statistics{
+		Resilience: 0,
+		ResCurrent: 0,
+		Attack:     0,
+		P_Def:      0,
+		A_Def:      0,
+		W_Def:      0,
+		P_Boost:    0,
+		A_Boost:    0,
+		W_Boost:    0,
+		Speed:      0,
+		ActionDice: 0,
+	}
+}

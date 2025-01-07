@@ -17,7 +17,7 @@ var exitButton common.Button = common.Button{
 	Active: true,
 }
 
-func Update(team *characters.Team) {
+func Update(team *characters.Team, opfor *characters.OpFor) {
 	mousePressed := ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft)
 	if mousePressed && !prevMousePressed {
 		x, y := ebiten.CursorPosition()
@@ -29,10 +29,11 @@ func Update(team *characters.Team) {
 	prevMousePressed = mousePressed
 }
 
-func Draw(screen *ebiten.Image) {
+func Draw(screen *ebiten.Image, team *characters.Team, opfor *characters.OpFor) {
 	screen.Fill(common.BackgroundColor)
 
 	// draw combat screen
+	opfor.DrawCombatHeader(screen)
 
 	exitButton.Draw(screen)
 }

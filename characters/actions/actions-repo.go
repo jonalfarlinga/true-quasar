@@ -96,6 +96,24 @@ var list map[string]*Action = map[string]*Action{
 			// Void Implosion logic goes here
 		},
 	},
+    "Marked for Death": {
+        Name:        "Marked for Death",
+        Description: "Mark an enemy, increasing Accuracy boost against them",
+        Cooldown:    1,
+        Type:        common.Accuracy,
+        Fn: func() {
+            // Marked for Death logic goes here
+        },
+    },
+    "Quantum Block": {
+        Name:        "Quantum Block",
+        Description: "When target ally is attacked, this character takes damage instead",
+        Cooldown:    2,
+        Type:        common.Will,
+        Fn: func() {
+            // Quantum Block logic goes here
+        },
+    },
 	"Aegis": {
 		Name:        "Aegis",
 		Description: "Shield yourself and allies from incoming damage",
@@ -105,6 +123,15 @@ var list map[string]*Action = map[string]*Action{
 			// Aegis logic goes here
 		},
 	},
+    "Targeting Matrix" : {
+        Name:       "Targeting Matrix",
+        Description: "Increase Accuracy and Will for all allies",
+        Cooldown:   3,
+        Type:       common.Accuracy,
+        Fn: func() {
+            // Targeting Matrix logic goes here
+        },
+    },
 	"Graviton Lock": {
 		Name:        "Graviton Lock",
 		Description: "Stuns all enemies using Will",
@@ -125,7 +152,7 @@ var list map[string]*Action = map[string]*Action{
 	},
 	"Plasma Blast": {
 		Name:        "Plasma Blast",
-		Description: "Deal damage to all enemies using Power",
+		Description: "Deal damage to all enemies using Power, and deals damage over time",
 		Cooldown:    3,
 		Type:        common.Power,
 		Fn: func() {
@@ -134,7 +161,7 @@ var list map[string]*Action = map[string]*Action{
 	},
 	"Bastion": {
 		Name:        "Bastion",
-		Description: "Heal yourself and allies",
+		Description: "Heal yourself and one ally",
 		Cooldown:    3,
 		Type:        common.Will,
 		Fn: func() {

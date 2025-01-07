@@ -24,6 +24,10 @@ type Hero struct {
 	BannerImage *ebiten.Image
 }
 
+func (h *Hero) GetID() int {
+	return h.id
+}
+
 func (h *Hero) GetStats() *stats.Statistics {
 	return h.Stats
 }
@@ -32,7 +36,11 @@ func (h *Hero) GetActionList() []*actions.Action {
 	return h.ActionList
 }
 
-func (h *Hero) Draw(screen *ebiten.Image, x, y int) {
+func (h *Hero) GetType() uint8 {
+	return h.Type
+}
+
+func (h *Hero) DrawHero(screen *ebiten.Image, x, y int) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(float64(x), float64(y))
 	screen.DrawImage(h.HeroImage, op)
@@ -97,8 +105,4 @@ func DefaultHero(name string, statistics *stats.Statistics, actionList []*action
 		IconImage:   iconImg,
 		BannerImage: bannerImg,
 	}
-}
-
-func (h *Hero) GetID() int {
-	return h.id
 }
