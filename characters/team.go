@@ -2,7 +2,6 @@ package characters
 
 import (
 	"image/color"
-	"quasar/assets"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
 	"quasar/common"
@@ -10,8 +9,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/text"
 )
-
-var placeholder, _ = assets.MustLoadImage("images/placeholder.png")
 
 type Team struct {
 	Heroes      []*Hero

@@ -64,6 +64,16 @@ func (e *Enemy) DrawCombatHeader(screen *ebiten.Image) {
 	text.Draw(screen, e.Name, common.MenuFont, int(op.GeoM.Element(0, 2)), int(op.GeoM.Element(1, 2)), color.White)
 }
 
+func (e *Enemy) DrawIcon(screen *ebiten.Image, x, y int) {
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(float64(x), float64(y))
+	screen.DrawImage(e.IconImage, op)
+}
+
+func (e *Enemy) DrawTooltip(screen *ebiten.Image, x, y int) {
+	// draw the tooltip
+}
+
 func DefaultBoss() *Enemy {
 	heroImg, err := assets.MustLoadImage("images/boss/mog_tron_hero.png")
 	if err != nil {

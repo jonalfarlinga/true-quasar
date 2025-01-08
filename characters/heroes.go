@@ -2,12 +2,15 @@ package characters
 
 import (
 	"fmt"
+	"image/color"
 	"math/rand"
 	"quasar/assets"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
+	"quasar/common"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/text"
 )
 
 type Hero struct {
@@ -43,7 +46,29 @@ func (h *Hero) GetType() uint8 {
 func (h *Hero) DrawChar(screen *ebiten.Image, x, y int) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(float64(x), float64(y))
+	if h.HeroImage == nil {
+		screen.DrawImage(placeholder, op)
+	}
 	screen.DrawImage(h.HeroImage, op)
+}
+
+func (h *Hero) DrawIcon(screen *ebiten.Image, x, y int) {
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(float64(x), float64(y))
+	screen.DrawImage(h.IconImage, op)
+	text.Draw(screen, h.Name, common.MenuFont, int(op.GeoM.Element(0, 2))+10, int(op.GeoM.Element(1, 2))+110, color.White)
+	op.GeoM.Reset()
+	op.GeoM.Scale(0.25, 0.25)
+	op.GeoM.Translate(float64(x), float64(y))
+	screen.DrawImage(common.Emblems[h.Type], op)
+	op.GeoM.Translate(75, 0)
+	screen.DrawImage(common.Emblems[h.Role+6], op)
+}
+
+func (h *Hero) DrawTooltip(screen *ebiten.Image, x, y int) {
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(float64(x), float64(y))
+	screen.DrawImage(h.BannerImage, op)
 }
 
 func NewHero(id int, name string, description string, heroType uint8, role uint8, statistics *stats.Statistics, actionList []*actions.Action) *Hero {

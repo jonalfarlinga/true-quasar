@@ -15,6 +15,7 @@ func Update() {
 	if draftState == DraftStateStart {
 		cd.Team().Heroes = make([]*characters.Hero, 4)
 		draftLineUp = make([]*DraftCard, 4)
+		iconPanel = *characters.NewIconPanel(common.ScreenWidth/2-215, 70, true, 4)
 		updateDraftPool()
 		draftState = DraftStateFirst
 		return
@@ -65,7 +66,8 @@ func Draw(screen *ebiten.Image) {
 	vector.DrawFilledRect(screen, 10, 210, common.ScreenWidth-20, common.ScreenHeight-220, common.PanelColor, false)
 
 	// Draw team
-	cd.Team().DrawIcons(screen, float64(common.ScreenWidth)/2-215, 70, true)
+	// cd.Team().DrawIcons(screen, float64(common.ScreenWidth)/2-215, 70, true)
+	iconPanel.DrawIcons(screen)
 
 	// Draw hero pool
 	for i, card := range draftLineUp {
@@ -83,6 +85,7 @@ func Draw(screen *ebiten.Image) {
 
 func lockIn() {
 	cd.Team().Heroes[draftState] = draftLineUp[draftSelection].Hero
+	iconPanel.UpdateIcon(draftLineUp[draftSelection].Hero, int(draftState))
 	if draftSelection > 3 {
 		draftLineUp = append(draftLineUp[:draftSelection], draftLineUp[draftSelection+1:]...)
 	}

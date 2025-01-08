@@ -3,6 +3,7 @@ package menu
 import (
 	"os"
 	"quasar/common"
+	cd "quasar/game/combat/combatdata"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
@@ -39,6 +40,7 @@ func Update() {
 			common.GameState = common.StateDraft
 		} else if common.Collide(x, y, &CreateButton) {
 			common.GameState = common.StateCombat
+			cd.DefaultTeam()
 		} else if common.Collide(x, y, &ExitButton) {
 			os.Exit(0)
 		}

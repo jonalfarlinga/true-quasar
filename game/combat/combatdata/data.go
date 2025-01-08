@@ -7,7 +7,7 @@ import (
 	"quasar/characters/stats"
 )
 
-var CD *CombatData
+var cd *CombatData
 
 type CombatData struct {
 	Team      *characters.Team
@@ -25,25 +25,29 @@ func NewCombatData() {
 	}
 
 	game.Team.Heroes[0] = characters.DefaultHero("vanguard", stats.DefaultStats(), actions.ActionsDefault())
-	CD = game
+	cd = game
 }
 
 func InitTeam() {
-	CD.Team.Heroes = make([]*characters.Hero, 4)
+	cd.Team.Heroes = make([]*characters.Hero, 4)
+}
+
+func DefaultTeam() {
+	cd.Team = characters.NewTeam()
 }
 
 func OpFor() *characters.OpFor {
-	return CD.OpFor
+	return cd.OpFor
 }
 
 func Area() *areas.Battlefield {
-	return CD.Area
+	return cd.Area
 }
 
 func Boss() *characters.Enemy {
-	return CD.OpFor.Chars[0].(*characters.Enemy)
+	return cd.OpFor.Chars[0].(*characters.Enemy)
 }
 
 func Team() *characters.Team {
-	return CD.Team
+	return cd.Team
 }

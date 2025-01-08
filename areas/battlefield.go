@@ -21,7 +21,7 @@ func DefaultBattlefield() *Battlefield {
 	return b
 }
 
-func (b *Battlefield) Draw(screen *ebiten.Image, x, y float64) {
+func (b *Battlefield) DrawArea(screen *ebiten.Image, x, y float64) {
 	op := &ebiten.DrawImageOptions{}
 	var width, height float64 = float64(b.Image.Bounds().Dx()), float64(b.Image.Bounds().Dy())
 	var targetWidth, targetHeight float64 = float64(common.ScreenWidth) * 3 / 4, float64(common.ScreenHeight - 200)

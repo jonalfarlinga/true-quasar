@@ -19,6 +19,7 @@ const (
 
 var draftLineUp []*DraftCard
 var draftState uint8 = DraftStateStart
+var iconPanel characters.IconPanel
 var draftSelection = -1
 var saveSelection = -1
 
