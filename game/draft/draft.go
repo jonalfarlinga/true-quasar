@@ -3,6 +3,7 @@ package draft
 import (
 	"quasar/characters"
 	"quasar/common"
+	cd "quasar/game/combat/combatdata"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
@@ -10,7 +11,7 @@ import (
 
 var prevMousePressed bool = true
 
-func Update(team *characters.Team) {
+func Update() {
 	if draftState == DraftStateStart {
 		draftLineUp = make([]*DraftCard, 4)
 		getDraftPool()
@@ -23,11 +24,11 @@ func Update(team *characters.Team) {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &exitButton) {
 			draftState = DraftStateStart
-			team.Heroes = make([]*characters.Hero, 4)
+			cd.CD.Team.Heroes = make([]*characters.Hero, 4)
 			common.GameState = common.StateMenu
 		} else if lockInButton.Active && common.Collide(x, y, &lockInButton) {
 			if draftState < DraftStateDone {
-				lockIn(team)
+				lockIn()
 			}
 		} else if fightButton.Active && common.Collide(x, y, &fightButton) {
 			common.GameState = common.StateCombat
@@ -58,13 +59,13 @@ func Update(team *characters.Team) {
 	prevMousePressed = mousePressed
 }
 
-func Draw(screen *ebiten.Image, team *characters.Team) {
+func Draw(screen *ebiten.Image) {
 	screen.Fill(common.BackgroundColor)
 	vector.DrawFilledRect(screen, 10, 10, common.ScreenWidth-20, 180, common.PanelColor, false)
 	vector.DrawFilledRect(screen, 10, 210, common.ScreenWidth-20, common.ScreenHeight-220, common.PanelColor, false)
 
 	// Draw team
-	team.DrawIcons(screen, -315, 25)
+	cd.CD.Team.DrawIcons(screen, -315, 25)
 
 	// Draw hero pool
 	for i, card := range draftLineUp {
@@ -80,8 +81,8 @@ func Draw(screen *ebiten.Image, team *characters.Team) {
 	}
 }
 
-func lockIn(team *characters.Team) {
-	team.Heroes[draftState] = draftLineUp[draftSelection].Hero
+func lockIn() {
+	cd.CD.Team.Heroes[draftState] = draftLineUp[draftSelection].Hero
 	if draftSelection > 3 {
 		draftLineUp = append(draftLineUp[:draftSelection], draftLineUp[draftSelection+1:]...)
 	}

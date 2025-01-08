@@ -12,7 +12,7 @@ import (
 
 type DraftCard struct {
 	Hero   *characters.Hero
-	x, y   int
+	x, y   float32
 	Active bool
 }
 
@@ -45,12 +45,12 @@ func (dc *DraftCard) Draw(screen *ebiten.Image, drafted, saved bool) {
 	screen.DrawImage(common.Emblems[dc.Hero.Role+6], op)
 }
 
-func (dc *DraftCard) GetBounds() (int, int, int, int) {
+func (dc *DraftCard) GetBounds() (float32, float32, float32, float32) {
 	// Return the bounds of the card
 	return dc.x, dc.y, dc.x + 170, dc.y + 450
 }
 
-func (dc *DraftCard) SetPosition(x, y int) {
+func (dc *DraftCard) SetPosition(x, y float32) {
 	dc.x, dc.y = x, y
 }
 

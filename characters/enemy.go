@@ -51,7 +51,7 @@ func (e *Enemy) DrawHero(screen *ebiten.Image, x, y int) {
 func (e *Enemy) DrawCombatHeader(screen *ebiten.Image) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Scale(0.25, 0.25)
-	op.GeoM.Translate(common.ScreenWidth-88, 22)
+	op.GeoM.Translate(float64(common.ScreenWidth)-88, 22)
 	screen.DrawImage(common.Emblems[e.Type], op)
 	vector.DrawFilledRect(screen, 15, 18, common.ScreenWidth-115, 25, common.ButtonOffColor, false)
 	resPercent := float32(e.Stats.ResCurrent) / float32(e.Stats.Resilience)
@@ -61,16 +61,16 @@ func (e *Enemy) DrawCombatHeader(screen *ebiten.Image) {
 	text.Draw(screen, e.Name, common.MenuFont, int(op.GeoM.Element(0, 2)), int(op.GeoM.Element(1, 2)), color.White)
 }
 
-func DefaultEnemy() *Enemy {
-	heroImg, err := assets.MustLoadImage("images/hero/vanguard.png")
+func DefaultBoss() *Enemy {
+	heroImg, err := assets.MustLoadImage("images/boss/mog_tron_hero.png")
 	if err != nil {
 		heroImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
-	iconImg, err := assets.MustLoadImage("images/icon/vanguard.png")
+	iconImg, err := assets.MustLoadImage("images/icon/mog_tron_icon.png")
 	if err != nil {
 		iconImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
-	bannerImg, err := assets.MustLoadImage("images/banner/vanguard.png")
+	bannerImg, err := assets.MustLoadImage("images/banner/mog_tron_banner.png")
 	if err != nil {
 		bannerImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}

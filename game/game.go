@@ -1,31 +1,24 @@
 package game
 
 import (
-	"quasar/characters"
-	"quasar/characters/actions"
-	"quasar/characters/stats"
+	"fmt"
 	"quasar/common"
+	"quasar/db"
 	"quasar/game/combat"
+	cd "quasar/game/combat/combatdata"
 	"quasar/game/draft"
 	"quasar/game/menu"
 
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Game struct {
-	Team      *characters.Team
-	OpFor     *characters.OpFor
-	TurnOrder []*characters.Hero
 }
 
 func NewGame() *Game {
-	game := &Game{
-		Team:      characters.NewTeam(),
-		OpFor:     characters.DefaultOpFor(),
-		TurnOrder: make([]*characters.Hero, 4),
-	}
-	game.Team.Heroes[0] = characters.DefaultHero("vanguard", stats.DefaultStats(), actions.ActionsDefault())
-	return game
+	cd.CD = cd.NewCombatData()
+	return &Game{}
 }
 
 func (g *Game) Update() error {
@@ -33,9 +26,9 @@ func (g *Game) Update() error {
 	case common.StateMenu:
 		menu.Update()
 	case common.StateDraft:
-		draft.Update(g.Team)
+		draft.Update()
 	case common.StateCombat:
-		combat.Update(g.Team, g.OpFor)
+		combat.Update()
 	}
 
 	return nil
@@ -48,13 +41,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	case common.StateMenu:
 		menu.Draw(screen)
 	case common.StateDraft:
-		draft.Draw(screen, g.Team)
+		draft.Draw(screen)
 	case common.StateCombat:
-		combat.Draw(screen, g.Team, g.OpFor)
+		combat.Draw(screen)
 	}
-	// ebitenutil.DebugPrint(screen, fmt.Sprintf("%+v", db.Pool))
+	ebitenutil.DebugPrint(screen, fmt.Sprintf("%+v", db.Pool))
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
-	return common.ScreenWidth, common.ScreenHeight
+	return int(common.ScreenWidth), int(common.ScreenHeight)
 }

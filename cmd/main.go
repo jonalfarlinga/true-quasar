@@ -6,6 +6,7 @@ import (
 	"quasar/common"
 	"quasar/db"
 	"quasar/game"
+	_ "quasar/game/combat/combatdata"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/joho/godotenv"
@@ -24,7 +25,7 @@ func main() {
 	common.GameState = common.StateMenu
 
 	// Set window size and run in fullscreen
-	ebiten.SetWindowSize(common.ScreenWidth, common.ScreenHeight)
+	ebiten.SetWindowSize(int(common.ScreenWidth), int(common.ScreenHeight))
 	ebiten.SetFullscreen(true)
 
 	// Set the frame rate

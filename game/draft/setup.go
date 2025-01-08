@@ -49,8 +49,8 @@ var fightButton common.Button = common.Button{
 func getDraftPool() {
 	n := float32(len(draftLineUp)) / 2
 	mod := float32((len(draftLineUp) % 2) * 5)
-	x := int(float32(common.ScreenWidth/2) - (180 * n) + mod)
-	y := 225
+	var x float32 = float32(common.ScreenWidth/2) - (180 * n) + mod
+	var y float32 = 225
 	list := getHeroes()
 	for i := 0; i < len(draftLineUp); i++ {
 		if i < 4 {

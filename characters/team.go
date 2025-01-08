@@ -3,6 +3,8 @@ package characters
 import (
 	"image/color"
 	"quasar/assets"
+	"quasar/characters/actions"
+	"quasar/characters/stats"
 	"quasar/common"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -21,6 +23,9 @@ type Team struct {
 func NewTeam() *Team {
 	t := &Team{}
 	t.Heroes = make([]*Hero, 4)
+	for i := 0; i < 4; i++ {
+		t.Heroes[i] = DefaultHero("vanguard", stats.DefaultStats(), actions.ActionsDefault())
+	}
 	t.DamageDealt = make([]int, 4)
 	t.DamageTaken = make([]int, 4)
 	t.HealsDealt = make([]int, 4)
