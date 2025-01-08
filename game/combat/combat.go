@@ -47,6 +47,7 @@ func Draw(screen *ebiten.Image) {
     for i, hero := range cd.CD.Team.Heroes {
         hero.DrawHero(screen, int(common.ScreenWidth*3/4)-160-(i*125), int(common.ScreenHeight-280))
     }
+    cd.CD.Team.DrawIcons(screen, float64(common.ScreenWidth)-200, 160, false)
 
 	exitButton.Draw(screen)
 }

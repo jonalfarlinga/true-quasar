@@ -5,6 +5,7 @@ import (
 	"quasar/characters"
 	"quasar/common"
 	"quasar/db"
+	cd "quasar/game/combat/combatdata"
 )
 
 const (
@@ -46,7 +47,10 @@ var fightButton common.Button = common.Button{
 	Active: false,
 }
 
-func getDraftPool() {
+func updateDraftPool() {
+	if draftState == DraftStateFourth {
+		draftLineUp = draftLineUp[:4]
+	}
 	n := float32(len(draftLineUp)) / 2
 	mod := float32((len(draftLineUp) % 2) * 5)
 	var x float32 = float32(common.ScreenWidth/2) - (180 * n) + mod
@@ -54,9 +58,6 @@ func getDraftPool() {
 	list := getHeroes()
 	for i := 0; i < len(draftLineUp); i++ {
 		if i < 4 {
-			// a := actions.ActionsDefault()
-			// s := stats.DefaultStats()
-			// n := "Hero " + strconv.Itoa(rand.Intn(100))
 			draftLineUp[i] = &DraftCard{
 				Hero:   list[i],
 				Active: true,
@@ -83,8 +84,9 @@ func getHeroes() []*characters.Hero {
 	case DraftStateThird:
 		// get all channelers
 		heroes, err = db.GetHeroesByRole(db.Pool, common.Channeler)
+	case DraftStateFourth:
+		return cd.CD.Team.Heroes
 	default:
-
 	}
 	if err != nil {
 		return nil

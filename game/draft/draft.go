@@ -13,8 +13,10 @@ var prevMousePressed bool = true
 
 func Update() {
 	if draftState == DraftStateStart {
+		cd.CD.Team.Heroes = make([]*characters.Hero, 4)
 		draftLineUp = make([]*DraftCard, 4)
-		getDraftPool()
+		// drafted = make([]*DraftCard, 4)
+		updateDraftPool()
 		draftState = DraftStateFirst
 		return
 	}
@@ -43,11 +45,10 @@ func Update() {
 					saveSelection = -1
 				} else if draftSelection == -1 {
 					draftSelection = i
-				} else if i < 4 {
+				} else if i < 4 && draftState < DraftStateFourth {
 					saveSelection = i
 				}
-
-				if draftSelection != -1 && saveSelection != -1 {
+				if draftSelection != -1 && (saveSelection != -1 || draftState == DraftStateFourth) {
 					lockInButton.Active = true
 				} else {
 					lockInButton.Active = false
@@ -65,7 +66,7 @@ func Draw(screen *ebiten.Image) {
 	vector.DrawFilledRect(screen, 10, 210, common.ScreenWidth-20, common.ScreenHeight-220, common.PanelColor, false)
 
 	// Draw team
-	cd.CD.Team.DrawIcons(screen, -315, 25)
+	cd.CD.Team.DrawIcons(screen, float64(common.ScreenWidth)/2-215, 70, true)
 
 	// Draw hero pool
 	for i, card := range draftLineUp {
@@ -88,8 +89,8 @@ func lockIn() {
 	}
 	if draftState < DraftStateFourth {
 		draftLineUp = append(draftLineUp, draftLineUp[saveSelection])
-		getDraftPool()
 	}
+	updateDraftPool()
 	draftSelection = -1
 	saveSelection = -1
 	lockInButton.Active = false
