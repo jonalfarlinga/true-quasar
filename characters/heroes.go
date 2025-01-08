@@ -40,7 +40,7 @@ func (h *Hero) GetType() uint8 {
 	return h.Type
 }
 
-func (h *Hero) DrawHero(screen *ebiten.Image, x, y int) {
+func (h *Hero) DrawChar(screen *ebiten.Image, x, y int) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(float64(x), float64(y))
 	screen.DrawImage(h.HeroImage, op)

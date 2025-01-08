@@ -10,6 +10,6 @@ import (
 type Character interface {
 	GetStats() *stats.Statistics
 	GetActionList() []*actions.Action
-	DrawHero(*ebiten.Image, int, int)
+	DrawChar(*ebiten.Image, int, int)
 	GetType() uint8
 }

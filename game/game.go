@@ -17,7 +17,7 @@ type Game struct {
 }
 
 func NewGame() *Game {
-	cd.CD = cd.NewCombatData()
+	cd.NewCombatData()
 	return &Game{}
 }
 

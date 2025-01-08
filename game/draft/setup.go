@@ -85,7 +85,7 @@ func getHeroes() []*characters.Hero {
 		// get all channelers
 		heroes, err = db.GetHeroesByRole(db.Pool, common.Channeler)
 	case DraftStateFourth:
-		return cd.CD.Team.Heroes
+		return cd.Team().Heroes
 	default:
 	}
 	if err != nil {

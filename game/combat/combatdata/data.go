@@ -16,7 +16,7 @@ type CombatData struct {
 	Area      *areas.Battlefield
 }
 
-func NewCombatData() *CombatData {
+func NewCombatData() {
 	game := &CombatData{
 		Team:      characters.NewTeam(),
 		OpFor:     characters.DefaultOpFor(),
@@ -25,5 +25,25 @@ func NewCombatData() *CombatData {
 	}
 
 	game.Team.Heroes[0] = characters.DefaultHero("vanguard", stats.DefaultStats(), actions.ActionsDefault())
-	return game
+	CD = game
+}
+
+func InitTeam() {
+	CD.Team.Heroes = make([]*characters.Hero, 4)
+}
+
+func OpFor() *characters.OpFor {
+	return CD.OpFor
+}
+
+func Area() *areas.Battlefield {
+	return CD.Area
+}
+
+func Boss() *characters.Enemy {
+	return CD.OpFor.Chars[0].(*characters.Enemy)
+}
+
+func Team() *characters.Team {
+	return CD.Team
 }

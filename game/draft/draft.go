@@ -13,9 +13,8 @@ var prevMousePressed bool = true
 
 func Update() {
 	if draftState == DraftStateStart {
-		cd.CD.Team.Heroes = make([]*characters.Hero, 4)
+		cd.Team().Heroes = make([]*characters.Hero, 4)
 		draftLineUp = make([]*DraftCard, 4)
-		// drafted = make([]*DraftCard, 4)
 		updateDraftPool()
 		draftState = DraftStateFirst
 		return
@@ -26,7 +25,7 @@ func Update() {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &exitButton) {
 			draftState = DraftStateStart
-			cd.CD.Team.Heroes = make([]*characters.Hero, 4)
+			cd.Team().Heroes = make([]*characters.Hero, 4)
 			common.GameState = common.StateMenu
 		} else if lockInButton.Active && common.Collide(x, y, &lockInButton) {
 			if draftState < DraftStateDone {
@@ -66,7 +65,7 @@ func Draw(screen *ebiten.Image) {
 	vector.DrawFilledRect(screen, 10, 210, common.ScreenWidth-20, common.ScreenHeight-220, common.PanelColor, false)
 
 	// Draw team
-	cd.CD.Team.DrawIcons(screen, float64(common.ScreenWidth)/2-215, 70, true)
+	cd.Team().DrawIcons(screen, float64(common.ScreenWidth)/2-215, 70, true)
 
 	// Draw hero pool
 	for i, card := range draftLineUp {
@@ -83,7 +82,7 @@ func Draw(screen *ebiten.Image) {
 }
 
 func lockIn() {
-	cd.CD.Team.Heroes[draftState] = draftLineUp[draftSelection].Hero
+	cd.Team().Heroes[draftState] = draftLineUp[draftSelection].Hero
 	if draftSelection > 3 {
 		draftLineUp = append(draftLineUp[:draftSelection], draftLineUp[draftSelection+1:]...)
 	}
