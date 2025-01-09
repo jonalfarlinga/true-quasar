@@ -10,14 +10,6 @@ import (
 )
 
 var prevMousePressed bool = true
-var exitButton common.Button = common.Button{
-	X:      common.ScreenWidth - 55,
-	Y:      15,
-	Width:  40,
-	Height: 40,
-	Text:   "X",
-	Active: true,
-}
 
 func Update() {
 	if combatState == CombatStateStart {
@@ -25,15 +17,16 @@ func Update() {
 		for _, hero := range cd.Team().Heroes {
 			iconPanel.AddIcon(hero)
 		}
-        combatState = CombatStateContinue
+		combatState = CombatStateContinue
+		bossIcon.Char = cd.Boss()
 	}
 	mousePressed := ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft)
 	if mousePressed && !prevMousePressed {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &exitButton) {
 			common.GameState = common.StateMenu
-            combatState = CombatStateStart
-			cd.InitTeam()
+			combatState = CombatStateStart
+			cd.NewCombatData()
 		}
 	}
 	prevMousePressed = mousePressed
@@ -51,12 +44,17 @@ func Draw(screen *ebiten.Image) {
 	for i, hero := range cd.Team().Heroes {
 		hero.DrawChar(screen, int(common.ScreenWidth*3/4)-160-(i*125), int(common.ScreenHeight-280))
 	}
-    iconPanel.DrawIcons(screen)
+	iconPanel.DrawIcons(screen)
 
 	// button layer
 	exitButton.Draw(screen)
 
 	// popup layer
+	x, y := ebiten.CursorPosition()
+	iconPanel.DrawTooltips(screen, x, y)
+	if common.Collide(x, y, bossIcon) {
+		cd.Boss().DrawTooltip(screen, x, y)
+	}
 }
 
 func drawPanel(screen *ebiten.Image) {

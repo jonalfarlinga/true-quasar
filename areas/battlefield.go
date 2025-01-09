@@ -14,7 +14,7 @@ type Battlefield struct {
 func DefaultBattlefield() *Battlefield {
 	b := &Battlefield{}
 	var err error
-	b.Image, err = assets.MustLoadImage("images/area/void_battlefield.png")
+	b.Image, err = assets.MustLoadImage("images/area/nexus_battlefield.png")
 	if err != nil {
 		b.Image, _ = assets.MustLoadImage("images/placeholder.png")
 	}

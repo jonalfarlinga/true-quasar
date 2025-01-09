@@ -4,7 +4,6 @@ import (
 	"quasar/assets"
 	"quasar/common"
 
-
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -68,9 +67,11 @@ func (i *Icon) GetBounds() (float32, float32, float32, float32) {
 	return x, y, x + 100, y + 100
 }
 
-func (i *IconPanel) DrawTooltip(screen *ebiten.Image) {
-	x, y := ebiten.CursorPosition()
+func (i *IconPanel) DrawTooltips(screen *ebiten.Image, x, y int) {
 	for _, icon := range i.Icons {
+		if icon.Char == nil {
+			continue
+		}
 		if common.Collide(x, y, icon) {
 			icon.Char.DrawTooltip(screen, x, y)
 		}

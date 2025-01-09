@@ -71,7 +71,9 @@ func (e *Enemy) DrawIcon(screen *ebiten.Image, x, y int) {
 }
 
 func (e *Enemy) DrawTooltip(screen *ebiten.Image, x, y int) {
-	// draw the tooltip
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(float64(x), float64(y))
+	screen.DrawImage(e.BannerImage, op)
 }
 
 func DefaultBoss() *Enemy {

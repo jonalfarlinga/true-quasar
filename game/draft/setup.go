@@ -23,6 +23,7 @@ var iconPanel characters.IconPanel
 var draftSelection = -1
 var saveSelection = -1
 
+
 var exitButton common.Button = common.Button{
 	X:      common.ScreenWidth - 55,
 	Y:      15,

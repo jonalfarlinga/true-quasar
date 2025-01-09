@@ -61,46 +61,61 @@ func Update() {
 }
 
 func Draw(screen *ebiten.Image) {
+	// background layer
 	screen.Fill(common.BackgroundColor)
-	vector.DrawFilledRect(screen, 10, 10, common.ScreenWidth-20, 180, common.PanelColor, false)
-	vector.DrawFilledRect(screen, 10, 210, common.ScreenWidth-20, common.ScreenHeight-220, common.PanelColor, false)
+	drawPanels(screen)
 
-	// Draw team
-	// cd.Team().DrawIcons(screen, float64(common.ScreenWidth)/2-215, 70, true)
+	// Active Layer
 	iconPanel.DrawIcons(screen)
-
-	// Draw hero pool
 	for i, card := range draftLineUp {
 		card.Draw(screen, i == draftSelection, i == saveSelection || i > 3)
 	}
 
-	// Draw buttons
+	// Button layer
 	exitButton.Draw(screen)
 	if draftState == DraftStateDone {
 		fightButton.Draw(screen)
 	} else {
 		lockInButton.Draw(screen)
 	}
+
+	// popup layer
+	x, y := ebiten.CursorPosition()
+	iconPanel.DrawTooltips(screen, x, y)
 }
 
 func lockIn() {
+	// lock in the new hero and update the iconPanel
 	cd.Team().Heroes[draftState] = draftLineUp[draftSelection].Hero
 	iconPanel.UpdateIcon(draftLineUp[draftSelection].Hero, int(draftState))
+	// remove the chosen hero explicitly if it was previously saved
 	if draftSelection > 3 {
 		draftLineUp = append(draftLineUp[:draftSelection], draftLineUp[draftSelection+1:]...)
 	}
+	// add the currently chosen save hero to the end of the draftLineUp
 	if draftState < DraftStateFourth {
 		draftLineUp = append(draftLineUp, draftLineUp[saveSelection])
 	}
+	// updaate the draft
 	updateDraftPool()
+	// reset the selection and increment the draftState
 	draftSelection = -1
 	saveSelection = -1
 	lockInButton.Active = false
 	draftState++
+	// if the draft is done, enable the fight button and disable the cards
 	if draftState == DraftStateDone {
 		fightButton.Active = true
 		for _, card := range draftLineUp {
 			card.Active = false
 		}
 	}
+}
+
+func drawPanels(screen *ebiten.Image) {
+	// selection panel
+	vector.DrawFilledRect(screen, 10, 10, common.ScreenWidth-20, 180, common.PanelColor, false)
+	// draft panel
+	vector.DrawFilledRect(screen, 10, 210, common.ScreenWidth-20, common.ScreenHeight-220, common.PanelColor, false)
+
 }
