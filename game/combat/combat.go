@@ -1,7 +1,6 @@
 package combat
 
 import (
-	"quasar/characters"
 	"quasar/common"
 	cd "quasar/game/combat/combatdata"
 
@@ -12,20 +11,19 @@ import (
 var prevMousePressed bool = true
 
 func Update() {
-	if combatState == CombatStateStart {
-		iconPanel = *characters.NewIconPanel(common.ScreenWidth-130, 160, false, 0)
-		for _, hero := range cd.Team().Heroes {
-			iconPanel.AddIcon(hero)
-		}
-		combatState = CombatStateContinue
-		bossIcon.Char = cd.Boss()
+	if combatState == CombatStateSetup {
+		initialize()
+        combatState = CombatStateContinue
 	}
+
+    
+
 	mousePressed := ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft)
 	if mousePressed && !prevMousePressed {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &exitButton) {
 			common.GameState = common.StateMenu
-			combatState = CombatStateStart
+			combatState = CombatStateSetup
 			cd.NewCombatData()
 		}
 	}
@@ -33,17 +31,18 @@ func Update() {
 }
 
 func Draw(screen *ebiten.Image) {
+	if combatState == CombatStateSetup {
+		return
+	}
 	// background layer
 	screen.Fill(common.BackgroundColor)
 	drawPanel(screen)
 
 	// info layer
 	cd.OpFor().DrawCombatHeader(screen)
-	cd.Area().DrawArea(screen, 40, 160)
-	cd.Boss().DrawChar(screen, 80, 290)
-	for i, hero := range cd.Team().Heroes {
-		hero.DrawChar(screen, int(common.ScreenWidth*3/4)-160-(i*125), int(common.ScreenHeight-280))
-	}
+	cd.Area().DrawArea(screen, 40, 220)
+    avatars.Draw(screen, -1)
+    bossAvatar.Draw(screen, true, false)
 	iconPanel.DrawIcons(screen)
 
 	// button layer

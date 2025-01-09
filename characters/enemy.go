@@ -21,7 +21,8 @@ type Enemy struct {
 	Stats       *stats.Statistics
 	ActionList  []*actions.Action
 	Cooldowns   []int
-	HeroImage   *ebiten.Image
+	Turnmeter   int
+	AvatarImage *ebiten.Image
 	IconImage   *ebiten.Image
 	BannerImage *ebiten.Image
 }
@@ -30,8 +31,17 @@ func (e *Enemy) GetID() int {
 	return e.id
 }
 
-func (e *Enemy) GetStats() *stats.Statistics {
+func (e *Enemy) EffectiveStats() *stats.Statistics {
 	return e.Stats
+}
+
+func (e *Enemy) GetTurnmeter() int {
+	return e.Turnmeter
+}
+
+func (e *Enemy) Tick() int {
+	e.Turnmeter += e.Stats.Speed
+	return e.Turnmeter
 }
 
 func (e *Enemy) GetActionList() []*actions.Action {
@@ -42,10 +52,14 @@ func (e *Enemy) GetType() uint8 {
 	return e.Type
 }
 
-func (e *Enemy) DrawChar(screen *ebiten.Image, x, y int) {
+func (e *Enemy) GetAvatar() *ebiten.Image {
+	return e.AvatarImage
+}
+
+func (e *Enemy) DrawAvatar(screen *ebiten.Image, x, y int) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(float64(x), float64(y))
-	screen.DrawImage(e.HeroImage, op)
+	screen.DrawImage(e.AvatarImage, op)
 }
 
 func (e *Enemy) DrawCombatHeader(screen *ebiten.Image) {
@@ -71,9 +85,19 @@ func (e *Enemy) DrawIcon(screen *ebiten.Image, x, y int) {
 }
 
 func (e *Enemy) DrawTooltip(screen *ebiten.Image, x, y int) {
-	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Translate(float64(x), float64(y))
-	screen.DrawImage(e.BannerImage, op)
+	const ttWidth, ttHeight float32 = 300, 210
+	const textWidth = 39
+	X, Y := float32(x), float32(y)
+	if X+ttWidth > common.ScreenWidth {
+		X -= ttWidth
+	}
+	if Y+ttHeight > common.ScreenHeight {
+		Y -= ttHeight
+	}
+	vector.DrawFilledRect(screen, X, Y, ttWidth, ttHeight, common.BackgroundColor, false)
+	text.Draw(screen, e.Name, common.MenuFont, int(X+10), int(Y+18), color.White)
+	text.Draw(screen, common.HeroTypeNames[e.Type], common.MenuFont, int(X+10), int(Y+33), color.White)
+	text.Draw(screen, common.WrapText(e.Description, textWidth), common.MenuFont, int(X+10), int(Y+48), color.White)
 }
 
 func DefaultBoss() *Enemy {
@@ -93,10 +117,10 @@ func DefaultBoss() *Enemy {
 		Name:        "Bad Guy",
 		Stats:       stats.DefaultStats(),
 		Type:        uint8(rand.Intn(6)),
-		Description: "This GUY is BAD!",
+		Description: "This GUY is BAD! He is so bad he'll mess you up. Take him out quick before the baddies win!",
 		ActionList:  actions.ActionsDefault(),
 		Cooldowns:   make([]int, 1),
-		HeroImage:   heroImg,
+		AvatarImage: heroImg,
 		IconImage:   iconImg,
 		BannerImage: bannerImg,
 	}

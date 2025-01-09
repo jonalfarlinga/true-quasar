@@ -24,7 +24,7 @@ func DefaultBattlefield() *Battlefield {
 func (b *Battlefield) DrawArea(screen *ebiten.Image, x, y float64) {
 	op := &ebiten.DrawImageOptions{}
 	var width, height float64 = float64(b.Image.Bounds().Dx()), float64(b.Image.Bounds().Dy())
-	var targetWidth, targetHeight float64 = float64(common.ScreenWidth) * 3 / 4, float64(common.ScreenHeight - 200)
+	var targetWidth, targetHeight float64 = float64(common.ScreenWidth) * 3 / 4, 400.0
 	op.GeoM.Scale(targetWidth/width, targetHeight/height)
 	op.GeoM.Translate(x, y)
 	screen.DrawImage(b.Image, op)

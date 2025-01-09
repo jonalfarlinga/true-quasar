@@ -8,9 +8,12 @@ import (
 )
 
 type Character interface {
-	GetStats() *stats.Statistics
+	EffectiveStats() *stats.Statistics
+	GetTurnmeter() int
+	Tick() int
 	GetActionList() []*actions.Action
-	DrawChar(*ebiten.Image, int, int)
+	GetAvatar() *ebiten.Image
+	DrawAvatar(*ebiten.Image, int, int)
 	DrawIcon(*ebiten.Image, int, int)
 	DrawTooltip(*ebiten.Image, int, int)
 	GetType() uint8

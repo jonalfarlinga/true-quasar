@@ -2,6 +2,7 @@ package characters
 
 import (
 	"image/color"
+	"quasar/assets"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
 	"quasar/common"
@@ -45,7 +46,7 @@ func (t *Team) DrawIcons(screen *ebiten.Image, x, y float64, horiz bool) {
 			screen.DrawImage(common.Emblems[hero.Role+6], emb_op)
 			emb_op.GeoM.Translate(-75, 0)
 		} else {
-			screen.DrawImage(placeholder, op)
+			screen.DrawImage(assets.Placeholder, op)
 		}
 		if horiz {
 			op.GeoM.Translate(110, 0)
@@ -83,7 +84,7 @@ func (t *Team) CalculateBonuses() {
 	for _, hero := range t.Heroes {
 		switch hero.Type {
 		case common.Antimatter:
-			s := hero.GetStats()
+			s := hero.EffectiveStats()
 			if plasma {
 				s.A_Boost += 1
 			}
@@ -93,7 +94,7 @@ func (t *Team) CalculateBonuses() {
 				s.W_Def += 10
 			}
 		case common.Graviton:
-			s := hero.GetStats()
+			s := hero.EffectiveStats()
 			if metal {
 				s.P_Def += 10
 				s.A_Def += 10
@@ -103,7 +104,7 @@ func (t *Team) CalculateBonuses() {
 				s.W_Boost += 1
 			}
 		case common.Plasma:
-			s := hero.GetStats()
+			s := hero.EffectiveStats()
 			if antimatter {
 				s.ActionDice += 2
 			}
@@ -111,7 +112,7 @@ func (t *Team) CalculateBonuses() {
 				s.W_Boost += 1
 			}
 		case common.Metal:
-			s := hero.GetStats()
+			s := hero.EffectiveStats()
 			if antimatter {
 				s.ActionDice += 2
 			}
@@ -119,7 +120,7 @@ func (t *Team) CalculateBonuses() {
 				s.P_Boost += 1
 			}
 		case common.Void:
-			s := hero.GetStats()
+			s := hero.EffectiveStats()
 			if graviton {
 				s.P_Boost += 1
 			}
@@ -127,7 +128,7 @@ func (t *Team) CalculateBonuses() {
 				s.A_Boost += 1
 			}
 		case common.Nexus:
-			s := hero.GetStats()
+			s := hero.EffectiveStats()
 			if antimatter {
 				s.ActionDice += 2
 			}

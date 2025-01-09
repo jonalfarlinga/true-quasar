@@ -12,6 +12,8 @@ import (
 
 //go:embed "*"
 var assetLib embed.FS
+var Placeholder, _ = MustLoadImage("images/placeholder.png")
+
 
 func MustLoadImage(name string) (*ebiten.Image, error) {
 	f, err := assetLib.Open(cleanAddress(name))

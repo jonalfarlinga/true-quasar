@@ -1,5 +1,7 @@
 package stats
 
+import "fmt"
+
 type Statistics struct {
 	Resilience int
 	ResCurrent int
@@ -34,7 +36,7 @@ func DefaultStats() *Statistics {
 	return &Statistics{
 		Resilience: 50,
 		ResCurrent: 50,
-		Attack:      100,
+		Attack:     100,
 		P_Def:      100,
 		A_Def:      100,
 		W_Def:      100,
@@ -56,5 +58,26 @@ func ZeroStats() *Statistics {
 		W_Boost:    0,
 		Speed:      0,
 		ActionDice: 0,
+	}
+}
+
+func (s *Statistics) ToString() string {
+	return fmt.Sprintf("Resilience: %d\nAttack: %d\nPower Def: %d\nAccuracy Def: %d\nWill Def: %d\nPower Boost: %d\nAccuracy Boost: %d\nWill Boost: %d\nSpeed: %d\nAction Dice: %d",
+		s.Resilience, s.Attack, s.P_Def, s.A_Def, s.W_Def, s.P_Boost, s.A_Boost, s.W_Boost, s.Speed, s.ActionDice)
+}
+
+func (s *Statistics) Copy() *Statistics {
+	return &Statistics{
+		Resilience: s.Resilience,
+		ResCurrent: s.ResCurrent,
+		Attack:     s.Attack,
+		P_Def:      s.P_Def,
+		A_Def:      s.A_Def,
+		W_Def:      s.W_Def,
+		P_Boost:    s.P_Boost,
+		A_Boost:    s.A_Boost,
+		W_Boost:    s.W_Boost,
+		Speed:      s.Speed,
+		ActionDice: s.ActionDice,
 	}
 }

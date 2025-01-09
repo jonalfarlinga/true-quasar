@@ -7,8 +7,6 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
-var placeholder, _ = assets.MustLoadImage("images/placeholder.png")
-
 type IconPanel struct {
 	X, Y       int
 	Icons      []*Icon
@@ -31,6 +29,14 @@ func NewIconPanel(x, y float32, horizontal bool, length int) *IconPanel {
 		ip.AddIcon(nil)
 	}
 	return ip
+}
+
+func NewIcon(x, y int, c Character) *Icon {
+	return &Icon{
+		X:    x,
+		Y:    y,
+		Char: c,
+	}
 }
 
 func (i *IconPanel) AddIcon(c Character) {
@@ -56,7 +62,7 @@ func (i *IconPanel) DrawIcons(screen *ebiten.Image) {
 		if icon.Char != nil {
 			icon.Char.DrawIcon(screen, icon.X, icon.Y)
 		} else {
-			screen.DrawImage(placeholder, op)
+			screen.DrawImage(assets.Placeholder, op)
 		}
 
 	}
