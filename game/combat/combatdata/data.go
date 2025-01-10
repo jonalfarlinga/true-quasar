@@ -12,7 +12,7 @@ var cd *CombatData
 type CombatData struct {
 	Team      *characters.Team
 	OpFor     *characters.OpFor
-	TurnOrder []*characters.Hero
+	TurnOrder *TurnTracker
 	Area      *areas.Battlefield
 }
 
@@ -20,7 +20,7 @@ func NewCombatData() {
 	game := &CombatData{
 		Team:      characters.NewTeam(),
 		OpFor:     characters.DefaultOpFor(),
-		TurnOrder: make([]*characters.Hero, 4),
+		TurnOrder: NewTurnTracker(nil),
 		Area:      areas.DefaultBattlefield(),
 	}
 
@@ -50,4 +50,15 @@ func Boss() *characters.Enemy {
 
 func Team() *characters.Team {
 	return cd.Team
+}
+
+func TurnOrder() *TurnTracker {
+	return cd.TurnOrder
+}
+
+func InitTurnOrder() {
+	cd.TurnOrder = NewTurnTracker(cd.OpFor.Chars)
+	for _, hero := range cd.Team.Heroes {
+		cd.TurnOrder.AddCharacter(hero)
+	}
 }

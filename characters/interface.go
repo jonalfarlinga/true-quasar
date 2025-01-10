@@ -10,6 +10,7 @@ import (
 type Character interface {
 	EffectiveStats() *stats.Statistics
 	GetTurnmeter() int
+	SetTurnmeter(int)
 	Tick() int
 	GetActionList() []*actions.Action
 	GetAvatar() *ebiten.Image

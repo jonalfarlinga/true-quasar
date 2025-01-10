@@ -38,8 +38,12 @@ func (h *Hero) EffectiveStats() *stats.Statistics {
 	return h.EffStats
 }
 
-func (e *Hero) GetTurnmeter() int {
-	return e.Turnmeter
+func (h *Hero) GetTurnmeter() int {
+	return h.Turnmeter
+}
+
+func (h *Hero) SetTurnmeter(tm int) {
+	h.Turnmeter = tm
 }
 
 func (e *Hero) Tick() int {

@@ -2,6 +2,7 @@ package combatdata
 
 import (
 	"container/heap"
+	"fmt"
 	"quasar/characters"
 )
 
@@ -30,9 +31,12 @@ type TurnTracker struct {
 
 func NewTurnTracker(c []characters.Character) *TurnTracker {
 	pq := make(PriorityQueue, len(c))
-	for _, char := range c {
-		pq.Push(char)
-	}
+	fmt.Print(len(c))
+	copy(pq, c)
+	// for i, char := range c {
+	// 	pq[i] = char
+	// }
+	fmt.Printf("pq: %v\n", pq)
 	heap.Init(&pq)
 	return &TurnTracker{Queue: pq}
 }
@@ -50,4 +54,13 @@ func (tt *TurnTracker) Tick() characters.Character {
 		return top
 	}
 	return nil
+}
+
+func (tt *TurnTracker) AddCharacter(c characters.Character) {
+	heap.Push(&tt.Queue, c)
+}
+
+func (tt *TurnTracker) TurnComplete(turnmeter int) {
+	tt.Queue[0].SetTurnmeter(turnmeter)
+	heap.Fix(&tt.Queue, 0)
 }

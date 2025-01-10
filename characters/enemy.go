@@ -39,6 +39,10 @@ func (e *Enemy) GetTurnmeter() int {
 	return e.Turnmeter
 }
 
+func (e *Enemy) SetTurnmeter(tm int) {
+	e.Turnmeter = tm
+}
+
 func (e *Enemy) Tick() int {
 	e.Turnmeter += e.Stats.Speed
 	return e.Turnmeter

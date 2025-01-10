@@ -42,4 +42,5 @@ func initialize() {
 	}
 	bossIcon = characters.NewIcon(15, 15, cd.Boss())
 	bossAvatar = characters.NewAvatar(cd.Boss(), 80, 290)
+	cd.InitTurnOrder()
 }
