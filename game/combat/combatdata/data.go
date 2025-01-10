@@ -62,3 +62,8 @@ func InitTurnOrder() {
 		cd.TurnOrder.AddCharacter(hero)
 	}
 }
+
+func Tick() characters.Character {
+	activateChar := cd.TurnOrder.Tick()
+	return activateChar
+}

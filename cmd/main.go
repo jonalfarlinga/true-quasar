@@ -6,7 +6,7 @@ import (
 	"quasar/common"
 	"quasar/db"
 	"quasar/game"
-	_ "quasar/game/combat/combatdata"
+	// _ "quasar/game/combat/combatdata"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/joho/godotenv"

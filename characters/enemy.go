@@ -31,6 +31,10 @@ func (e *Enemy) GetID() int {
 	return e.id
 }
 
+func (e *Enemy) GetName() string {
+	return e.Name
+}
+
 func (e *Enemy) EffectiveStats() *stats.Statistics {
 	return e.Stats
 }

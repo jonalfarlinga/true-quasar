@@ -34,6 +34,10 @@ func (h *Hero) GetID() int {
 	return h.id
 }
 
+func (h *Hero) GetName() string {
+	return h.Name
+}
+
 func (h *Hero) EffectiveStats() *stats.Statistics {
 	return h.EffStats
 }

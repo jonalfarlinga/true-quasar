@@ -13,6 +13,7 @@ type Character interface {
 	SetTurnmeter(int)
 	Tick() int
 	GetActionList() []*actions.Action
+	GetName() string
 	GetAvatar() *ebiten.Image
 	DrawAvatar(*ebiten.Image, int, int)
 	DrawIcon(*ebiten.Image, int, int)
