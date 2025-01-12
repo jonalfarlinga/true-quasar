@@ -33,8 +33,11 @@ var ExitButton common.Button = common.Button{
 	Active: true,
 }
 
+var prevMousePressed bool = false
+
 func Update() {
-	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
+	mouseButtonPressed := ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft)
+	if !mouseButtonPressed && prevMousePressed {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &PlayButton) {
 			common.GameState = common.StateDraft
@@ -45,6 +48,7 @@ func Update() {
 			os.Exit(0)
 		}
 	}
+	prevMousePressed = mouseButtonPressed
 }
 
 func Draw(screen *ebiten.Image) {

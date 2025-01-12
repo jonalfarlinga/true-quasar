@@ -72,7 +72,7 @@ var RepoList = []*characters.Hero{
 	// Hero6
 	characters.NewHero(
 		-1,
-		"Voidwalker",
+		"Void Walker",
 		"An enigmatic hero that deals damage over time and attacks multiple enemies.",
 		common.Void,
 		common.Striker,

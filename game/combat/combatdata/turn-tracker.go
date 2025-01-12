@@ -39,7 +39,7 @@ func (tt *TurnTracker) Tick() characters.Character {
 	// Re-heapify to maintain priority
 	heap.Init(&tt.Queue)
 
-	// Check if the top character is ready for a turn
+	// Check if the top turnmeter is ready for a turn
 	top := tt.Queue[0]
 	if top.GetTurnmeter() >= 1000 {
 		return top

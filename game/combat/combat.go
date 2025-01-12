@@ -20,7 +20,7 @@ func Update() {
 	// allow exit button to interrupt
 	mousePressed := ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft)
 	x, y := ebiten.CursorPosition()
-	if mousePressed && !prevMousePressed {
+	if !mousePressed && prevMousePressed {
 		if common.Collide(x, y, &exitButton) {
 			common.GameState = common.StateMenu
 			combatState = CombatStateSetup
@@ -59,7 +59,7 @@ func Update() {
 	case CombatStateEndTurn:
 		end_turn()
 		activeChar = nil
-        combatState = CombatStateContinue
+		combatState++
 	}
 
 	prevMousePressed = mousePressed

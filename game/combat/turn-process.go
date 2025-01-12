@@ -1,6 +1,10 @@
 package combat
 
-import "time"
+import (
+	"time"
+
+	cd "quasar/game/combat/combatdata"
+)
 
 func start_turn() {
 	turnStartTime = time.Now()
@@ -27,11 +31,11 @@ func resolve_action() {
 }
 
 func end_turn() {
-
+	cd.TurnOrder().TurnComplete(0)
 }
 
 func animate() {
-	if time.Since(turnStartTime) > 2*time.Second {
-		combatState++
+	if done := cd.AnimationsDone(); done {
+		combatState = CombatStateContinue
 	}
 }

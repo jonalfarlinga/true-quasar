@@ -22,7 +22,7 @@ func Update() {
 	}
 
 	mousePressed := ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft)
-	if mousePressed && !prevMousePressed {
+	if !mousePressed && prevMousePressed {
 		x, y := ebiten.CursorPosition()
 		if common.Collide(x, y, &exitButton) {
 			draftState = DraftStateStart
