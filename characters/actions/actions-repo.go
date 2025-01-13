@@ -3,6 +3,15 @@ package actions
 import "quasar/common"
 
 var list map[string]*Action = map[string]*Action{
+	"Boss Hammer": {
+		Name:		"Boss Hammer",
+		Description: "Deal damage to all the enemies with Power",
+		Cooldown:	0,
+		Type:		common.Power,
+		Fn: func() {
+			// Boss Hammer logic goes here
+		},
+	},
 	"Power Strike": {
 		Name:        "Power Strike",
 		Description: "Deal damage to the enemy with Power",

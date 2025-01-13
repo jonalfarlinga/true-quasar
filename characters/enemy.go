@@ -121,9 +121,10 @@ func DefaultBoss() *Enemy {
 	if err != nil {
 		bannerImg, _ = assets.MustLoadImage("images/placeholder.png")
 	}
+	statistics := stats.NewStats(1000, 110, 110, 110, 90, 2, 0, 2, 102, 30)
 	return &Enemy{
 		Name:        "Bad Guy",
-		Stats:       stats.DefaultStats(),
+		Stats:       statistics,
 		Type:        uint8(rand.Intn(6)),
 		Description: "This GUY is BAD! He is so bad he'll mess you up. Take him out quick before the baddies win!",
 		ActionList:  actions.ActionsDefault(),

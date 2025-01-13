@@ -49,7 +49,7 @@ var RepoList = []*characters.Hero{
 	characters.NewHero(
 		-1,
 		"Gravus Krang",
-		"A hero that excels at controlling the battlefield and protecting allies.",
+		"A tough hero that gains defense as he loses resilience, and takes damage for other heroes.",
 		common.Graviton,
 		common.Defender,
 		stats.NewStats(50, 90, 130, 100, 130, 1, 0, 1, 86, 30),
@@ -72,11 +72,11 @@ var RepoList = []*characters.Hero{
 	// Hero6
 	characters.NewHero(
 		-1,
-		"Voidwalker",
+		"Void Walker",
 		"An enigmatic hero that deals damage over time and attacks multiple enemies.",
 		common.Void,
 		common.Striker,
-		stats.NewStats(50, 120, 90, 90, 90, 0, 1, 1, 90, 30),
+		stats.NewStats(50, 120, 95, 85, 85, 0, 0, 1, 91, 30),
 		actions.NewActionList(
 			"Precision Strike,Void Implosion,Graviton Collapse",
 		),
