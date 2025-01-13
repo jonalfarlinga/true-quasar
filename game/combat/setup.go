@@ -14,8 +14,8 @@ const (
 	CombatStatePreAction
 	CombatStateProcessAction
 	CombatStateResolveAction
-	CombatStateAnimate
 	CombatStateEndTurn
+	CombatStateAnimate
 	CombatStateSetup
 )
 

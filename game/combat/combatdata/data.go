@@ -2,6 +2,7 @@ package combatdata
 
 import (
 	"quasar/areas"
+	"quasar/assets/animation"
 	"quasar/characters"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
@@ -10,10 +11,11 @@ import (
 var cd *CombatData
 
 type CombatData struct {
-	Team      *characters.Team
-	OpFor     *characters.OpFor
-	TurnOrder *TurnTracker
-	Area      *areas.Battlefield
+	Team           *characters.Team
+	OpFor          *characters.OpFor
+	Area           *areas.Battlefield
+	TurnOrder      *TurnTracker
+	AnimationQueue *animation.AnimationQueue
 }
 
 func NewCombatData() {
@@ -66,4 +68,8 @@ func InitTurnOrder() {
 func Tick() characters.Character {
 	activateChar := cd.TurnOrder.Tick()
 	return activateChar
+}
+
+func AnimationsDone() bool {
+	return cd.AnimationQueue.Length() == 0
 }
