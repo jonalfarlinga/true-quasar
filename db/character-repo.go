@@ -109,12 +109,12 @@ var RepoList = []*characters.Hero{
 	characters.NewHero(
 		-1,
 		"Chronomancer",
-		"A hero that excels at controlling the battlefield and protecting allies.",
+		"The frontline officer of the Nexus, chronomancers control the battlefield through manipulating the gravitic-temporal flow.",
 		common.Nexus,
 		common.Controller,
-		stats.NewStats(60, 100, 75, 75, 75, 1, 1, 3, 105, 30),
+		stats.NewStats(60, 100, 75, 75, 85, 1, 1, 3, 105, 30),
 		actions.NewActionList(
-			"Plasma Barrage,Temporal Rift,Plasma Matrix",
+			"Graviton Lance,Temporal Rift,Plasma Matrix",
 		),
 	),
 	// Hero10
@@ -181,12 +181,12 @@ var RepoList = []*characters.Hero{
 	characters.NewHero(
 		-1,
 		"Warden",
-		"A hero that excels at taking hits and protecting allies.",
+		"A nurturing hero that bolsters and heals their allies.",
 		common.Metal,
 		common.Channeler,
 		stats.NewStats(70, 90, 120, 120, 120, 1, 0, 0, 90, 30),
 		actions.NewActionList(
-			"Charging Slam,Graviton Collapse,Graviton Surge",
+			"Charging Slam,Bastion,Cosmic Resonance",
 		),
 	),
 	// Hero16
