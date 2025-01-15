@@ -8,14 +8,30 @@ import (
 	"quasar/characters/stats"
 )
 
-func InsertHero(db *sql.DB, hero *characters.Hero) error {
+func InsertOrUpdateHero(db *sql.DB, hero *characters.Hero) error {
 	query := `INSERT INTO Heroes (
 		name, description, type, role, action_list,
 		res, Attack, P_Def, A_Def, W_Def,
 		P_Boost, A_Boost, W_Boost, Speed, ActionDice
 	) VALUES (
 		?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
-    );`
+	) ON DUPLICATE KEY UPDATE
+		name = VALUES(name),
+		description = VALUES(description),
+		type = VALUES(type),
+		role = VALUES(role),
+		action_list = VALUES(action_list),
+		res = VALUES(res),
+		Attack = VALUES(Attack),
+		P_Def = VALUES(P_Def),
+		A_Def = VALUES(A_Def),
+		W_Def = VALUES(W_Def),
+		P_Boost = VALUES(P_Boost),
+		A_Boost = VALUES(A_Boost),
+		W_Boost = VALUES(W_Boost),
+		Speed = VALUES(Speed),
+		ActionDice = VALUES(ActionDice)
+	;`
 	actionListStr := actions.ActionListToString(hero.GetActionList())
 	_, err := db.Exec(
 		query,
@@ -26,7 +42,7 @@ func InsertHero(db *sql.DB, hero *characters.Hero) error {
 		hero.Stats.Speed, hero.Stats.ActionDice,
 	)
 	if err != nil {
-		return fmt.Errorf("error inserting into Heroes table: %v", err)
+		return fmt.Errorf("error inserting or updating Heroes table: %v", err)
 	}
 
 	return nil

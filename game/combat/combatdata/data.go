@@ -6,6 +6,8 @@ import (
 	"quasar/characters"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 var cd *CombatData
@@ -20,10 +22,11 @@ type CombatData struct {
 
 func NewCombatData() {
 	game := &CombatData{
-		Team:      characters.NewTeam(),
-		OpFor:     characters.DefaultOpFor(),
-		TurnOrder: NewTurnTracker(nil),
-		Area:      areas.DefaultBattlefield(),
+		Team:           characters.NewTeam(),
+		OpFor:          characters.DefaultOpFor(),
+		Area:           areas.DefaultBattlefield(),
+		TurnOrder:      NewTurnTracker(nil),
+		AnimationQueue: animation.NewAnimationQueue(),
 	}
 
 	game.Team.Heroes[0] = characters.DefaultHero("vanguard", stats.DefaultStats(), actions.ActionsDefault())
@@ -68,6 +71,10 @@ func InitTurnOrder() {
 func Tick() characters.Character {
 	activateChar := cd.TurnOrder.Tick()
 	return activateChar
+}
+
+func Animate(screen *ebiten.Image) {
+	cd.AnimationQueue.Animate(screen)
 }
 
 func AnimationsDone() bool {

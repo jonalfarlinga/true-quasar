@@ -54,7 +54,7 @@ func initTables(db *sql.DB) error {
 		return fmt.Errorf("error creating Heroes table: %v", err)
 	}
 
-	installHeroRepo(db)
+	loadFromCSV(db)
 
 	// query = `CREATE TABLE IF NOT EXISTS Actions (
 	// 	id INT AUTO_INCREMENT PRIMARY KEY,

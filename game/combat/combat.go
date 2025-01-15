@@ -5,7 +5,6 @@ import (
 	"quasar/characters"
 	"quasar/common"
 	cd "quasar/game/combat/combatdata"
-	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
@@ -14,7 +13,7 @@ import (
 
 var prevMousePressed bool = true
 var activeChar characters.Character
-var turnStartTime time.Time
+var manager *cd.TurnManager
 
 func Update() {
 	// allow exit button to interrupt
@@ -60,6 +59,8 @@ func Update() {
 		end_turn()
 		activeChar = nil
 		combatState++
+    case CombatStateCleanup:
+        cleanup()
 	}
 
 	prevMousePressed = mousePressed
@@ -79,10 +80,7 @@ func Draw(screen *ebiten.Image) {
 	draw_boss(screen)
 
 	// action layer
-	if combatState == CombatStateAnimate {
-		// animate the actions
-		animate()
-	}
+    animate(screen)
 
 	// button layer
 	exitButton.Draw(screen)

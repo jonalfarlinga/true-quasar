@@ -1,6 +1,8 @@
 package actions
 
-import "strings"
+import (
+	"strings"
+)
 
 type Action struct {
 	Name        string

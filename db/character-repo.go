@@ -2,10 +2,15 @@ package db
 
 import (
 	"database/sql"
+	"encoding/csv"
+	"io"
+	"log"
+	"os"
 	"quasar/characters"
 	"quasar/characters/actions"
 	"quasar/characters/stats"
 	"quasar/common"
+	"strconv"
 )
 
 var RepoList = []*characters.Hero{
@@ -205,6 +210,72 @@ var RepoList = []*characters.Hero{
 
 func installHeroRepo(db *sql.DB) {
 	for _, hero := range RepoList {
-		InsertHero(db, hero)
+		InsertOrUpdateHero(db, hero)
 	}
+}
+
+func loadFromCSV(db *sql.DB) {
+	// Load from CSV
+	file, err := os.Open("db/heroes.csv")
+	if err != nil {
+		log.Fatalf("failed to open file: %s", err)
+	}
+	defer file.Close()
+
+	reader := csv.NewReader(file)
+	reader.FieldsPerRecord = -1
+
+	for {
+		record, err := reader.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("failed to read record: %s", err)
+		}
+		types := map[string]uint8{
+			"Nexus":      0,
+			"Antimatter": 1,
+			"Graviton":   2,
+			"Plasma":     3,
+			"Metal":      4,
+			"Void":       5,
+		}
+		roles := map[string]uint8{
+			"Striker":    0,
+			"Defender":   1,
+			"Controller": 2,
+			"Channeler":  3,
+		}
+		hero := characters.NewHero(
+			-1,
+			record[0],
+			record[13],
+			types[record[1]],
+			roles[record[2]],
+			stats.NewStats(
+				parseInt(record[3]),
+				parseInt(record[4]),
+				parseInt(record[5]),
+				parseInt(record[6]),
+				parseInt(record[7]),
+				parseInt(record[8]),
+				parseInt(record[9]),
+				parseInt(record[10]),
+				parseInt(record[11]),
+				30,
+			),
+			actions.NewActionList(record[12]),
+		)
+
+		InsertOrUpdateHero(db, hero)
+	}
+}
+
+func parseInt(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		log.Fatalf("failed to parse int: %s", err)
+	}
+	return i
 }

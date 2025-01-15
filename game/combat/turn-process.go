@@ -1,13 +1,13 @@
 package combat
 
 import (
-	"time"
-
 	cd "quasar/game/combat/combatdata"
+
+	"github.com/hajimehoshi/ebiten/v2"
 )
 
 func start_turn() {
-	turnStartTime = time.Now()
+	manager = cd.NewTurnManager()
 }
 
 func action_select() {
@@ -34,8 +34,14 @@ func end_turn() {
 	cd.TurnOrder().TurnComplete(0)
 }
 
-func animate() {
+func cleanup() {
 	if done := cd.AnimationsDone(); done {
 		combatState = CombatStateContinue
+	}
+}
+
+func animate(screen *ebiten.Image) {
+	if done := cd.AnimationsDone(); !done {
+		cd.Animate(screen)
 	}
 }
