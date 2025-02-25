@@ -78,6 +78,32 @@ func GetHeroesByRole(db *sql.DB, role uint8) ([]*characters.Hero, error) {
 	return parseHeroes(rows)
 }
 
+func GetNHeroes(db *sql.DB, n int, by_role, by_type bool, filter uint8) ([]*characters.Hero, error) {
+	filter_string := ""
+	if by_role {
+		filter_string = fmt.Sprintf("WHERE role = %d", filter)
+	} else if by_type {
+		filter_string = fmt.Sprintf("WHERE type = %d", filter)
+	}
+	randomizer := fmt.Sprintf(
+		"JOIN (SELECT id FROM Heroes %s ORDER BY RAND() LIMIT %d) AS h2",
+		filter_string, n,
+	)
+	query := fmt.Sprintf(`
+		SELECT h1.id, h1.name, h1.description, h1.type, h1.role, h1.action_list,
+        h1.res, h1.Attack, h1.P_Def, h1.A_Def, h1.W_Def,
+        h1.P_Boost, h1.A_Boost, h1.W_Boost, h1.Speed, h1.ActionDice
+        FROM Heroes AS h1 %s ON h1.id = h2.id;`,
+		randomizer,
+	)
+	rows, err := db.Query(query)
+	if err != nil {
+		return nil, fmt.Errorf("error querying Heroes table: %v", err)
+	}
+	defer rows.Close()
+	return parseHeroes(rows)
+}
+
 func parseHeroes(rows *sql.Rows) ([]*characters.Hero, error) {
 	heroes := []*characters.Hero{}
 	for rows.Next() {
@@ -91,6 +117,9 @@ func parseHeroes(rows *sql.Rows) ([]*characters.Hero, error) {
 			&res, &attack, &pDef, &aDef, &wDef,
 			&pBoost, &aBoost, &wBoost, &speed, &actionDice,
 		)
+		if err != nil {
+			return nil, fmt.Errorf("error scanning Heroes table: %v", err)
+		}
 		st := stats.NewStats(
 			res, attack, pDef, aDef, wDef,
 			pBoost, aBoost, wBoost, speed, actionDice,
@@ -99,9 +128,6 @@ func parseHeroes(rows *sql.Rows) ([]*characters.Hero, error) {
 		hero := characters.NewHero(
 			id, name, description, uint8(heroType), uint8(role), st, al,
 		)
-		if err != nil {
-			return nil, fmt.Errorf("error scanning Heroes table: %v", err)
-		}
 		heroes = append(heroes, hero)
 	}
 	return heroes, nil

@@ -23,7 +23,6 @@ var iconPanel characters.IconPanel
 var draftSelection = -1
 var saveSelection = -1
 
-
 var exitButton common.Button = common.Button{
 	X:      common.ScreenWidth - 55,
 	Y:      15,
@@ -76,16 +75,16 @@ func getHeroes() []*characters.Hero {
 	switch draftState {
 	case DraftStateStart:
 		// get all defenders
-		heroes, err = db.GetHeroesByRole(db.Pool, common.Defender)
+		heroes, err = db.GetNHeroes(db.Pool, 4, true, false, common.Defender)
 	case DraftStateFirst:
 		// get all strikers
-		heroes, err = db.GetHeroesByRole(db.Pool, common.Striker)
+		heroes, err = db.GetNHeroes(db.Pool, 4, true, false, common.Striker)
 	case DraftStateSecond:
 		// get all controllers
-		heroes, err = db.GetHeroesByRole(db.Pool, common.Controller)
+		heroes, err = db.GetNHeroes(db.Pool, 4, true, false, common.Controller)
 	case DraftStateThird:
 		// get all channelers
-		heroes, err = db.GetHeroesByRole(db.Pool, common.Channeler)
+		heroes, err = db.GetNHeroes(db.Pool, 4, true, false, common.Channeler)
 	case DraftStateFourth:
 		return cd.Team().Heroes
 	default:
