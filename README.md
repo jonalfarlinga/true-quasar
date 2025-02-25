@@ -4,17 +4,15 @@
 ### Setup
 Create a MySQL server and save the connection string as `DSN="dsn"` in a file `.env` in the root project directory.
 
-docker volume create new-mysql-data
+docker volume create true-quasar-data
 
-docker run --name my-mysql `
-  -e MYSQL_ROOT_PASSWORD=your_password `
-  -e MYSQL_DATABASE=your_database `
-  -e MYSQL_USER=your_user `
-  -e MYSQL_PASSWORD=your_user_password `
+docker run --name quasar-db `
+  -e MYSQL_ROOT_PASSWORD=admin `
+  -e MYSQL_DATABASE=entities `
+  -e MYSQL_USER=consilium `
+  -e MYSQL_PASSWORD=true-quasar `
   -p 3306:3306 `
-  -v new-mysql-data:/var/lib/mysql `
+  -v true-quasar-data:/var/lib/mysql `
   -d mysql
 
- docker exec -it my-mysql mysql -u root -p
- 
- CREATE DATABASE your_database
+docker exec -it quasar-db mysql -u root -p

@@ -1,12 +1,12 @@
 Dark Sorcerer,Antimatter,Controller,45,130,85,100,85,0,2,0,100,"Antimatter Strike,Antimatter Cascade,Temporal Rift","Dabbling in the forbidden arts, the sorcerer deals damage and disrupts enemies.,"
 Gravus Krang,Graviton,Defender,50,90,130,100,130,1,0,1,86,"Graviton Lock,Deflection Field,Bastion","A tough hero that gains defense as he loses resilience, and takes damage for other heroes."
-Battle Angel,Graviton,Striker,50,135,85,70,90,0,1,1,110,"Gravitic Riposte,Deflection Field,Graviton Collapse","A free-willed android who joins battles seemingly at random. She is a powerful dealer and preventer of damage.,"
-Vanguard,Metal,Defender,70,85,120,120,120,1,0,0,85,"Charging Slam,Aegis,Bastion","A front line fighter that excels at taking hits and protecting allies.,"
-Chronomancer,Nexus,Controller,60,100,75,75,85,1,1,3,100,"Graviton Lance,Temporal Rift,Plasma Matrix","The frontline officer of the Nexus, chronomancers control the battlefield through manipulating the gravitic-temporal flow.,"
-Quasar Knight,Nexus,Defender,60,100,100,100,100,1,1,1,92,"Charging Slam,Graviton Surge,Electron Cage","""A legendary duelist who focuses on damaging single targets while reducing their effectiveness."","
-Grand Unifier,Plasma,Channeler,60,115,75,75,95,1,1,2,100,"Plasma Slash,Temporal Rift,Plasma Overload","An exemplary leader of men, who deals area damage and hastens allies.,"
-Riftblade,Plasma,Striker,45,125,85,100,80,0,4,0,80,"Antimatter Strike,Plasma Blast,Graviton Surge","An ancient order of mercenaries that specializes in avoiding attacks while taking down hard targets.,"
-Voidbringer,Void,Channeler,60,80,70,70,130,1,0,0,95,"Graviton Lock,Deflection Field,Plasma Overload","The voidbringer buffs allies and disrupts enemies, with litte regard for themselves.,"
-Void Prophet,Void,Controller,50,85,115,115,115,1,0,1,95,"Concentrated Strike,Void Implosion,Void Snare","Bringing the inscrutable will of the Void, the prophet deals damage over time and slows enemies.,"
-Void Walker,Void,Striker,50,120,95,85,85,0,0,1,91,"Precision Strike,Void Implosion,Graviton Collapse","An enigmatic hero that deals damage over time and attacks multiple enemies.,"
-Warden,Metal,Channeler,70,90,120,120,120,1,0,0,90,"Charging Slam,Bastion,Cosmic Resonance","A nurturing hero that bolsters and heals their allies.,"
+Battle Angel,Graviton,Striker,50,135,85,70,90,0,1,1,110,"Gravitic Riposte,Deflection Field,Graviton Collapse","A free-willed android who joins battles seemingly at random. She is a powerful dealer and preventer of damage.",
+Vanguard,Metal,Defender,70,85,120,120,120,1,0,0,85,"Charging Slam,Aegis,Bastion","A front line fighter that excels at taking hits and protecting allies.",
+Chronomancer,Nexus,Controller,60,100,75,75,85,1,1,3,100,"Graviton Lance,Temporal Rift,Plasma Matrix","The frontline officer of the Nexus, chronomancers control the battlefield through manipulating the gravitic-temporal flow.",
+Quasar Knight,Nexus,Defender,60,100,100,100,100,1,1,1,92,"Charging Slam,Graviton Surge,Electron Cage","""A legendary duelist who focuses on damaging single targets while reducing their effectiveness.",
+Grand Unifier,Plasma,Channeler,60,115,75,75,95,1,1,2,100,"Plasma Slash,Temporal Rift,Plasma Overload","An exemplary leader of men, who deals area damage and hastens allies.",
+Riftblade,Plasma,Striker,45,125,85,100,80,0,4,0,80,"Antimatter Strike,Plasma Blast,Graviton Surge","An ancient order of mercenaries that specializes in avoiding attacks while taking down hard targets.",
+Voidbringer,Void,Channeler,60,80,70,70,130,1,0,0,95,"Graviton Lock,Deflection Field,Plasma Overload","The voidbringer buffs allies and disrupts enemies, with litte regard for themselves.",
+Void Prophet,Void,Controller,50,85,115,115,115,1,0,1,95,"Concentrated Strike,Void Implosion,Void Snare","Bringing the inscrutable will of the Void, the prophet deals damage over time and slows enemies.",
+Void Walker,Void,Striker,50,120,95,85,85,0,0,1,91,"Precision Strike,Void Implosion,Graviton Collapse","An enigmatic hero that deals damage over time and attacks multiple enemies.",
+Warden,Metal,Channeler,70,90,120,120,120,1,0,0,90,"Charging Slam,Bastion,Cosmic Resonance","A nurturing hero that bolsters and heals their allies.",
